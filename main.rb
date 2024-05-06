@@ -21,7 +21,6 @@ class Main < Gosu::Window
                 end
             end
         end
-        puts @tabPositionPlayer
         @player.positionPlayer(@tabPositionPlayer[5]["x"]*40,@tabPositionPlayer[5]["y"]*40)
     end
 
