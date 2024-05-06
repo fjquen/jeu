@@ -1,9 +1,9 @@
 require "gosu"
-
+require "./player.rb"
 
 class Main < Gosu::Window
     def initialize
-        super 800,400,false
+        super 660,495,false
         @world=[["#","#","#","#","#","#"],
                 ["#"," "," "," "," ","#"],
                 ["#"," "," "," "," ","#"],
@@ -12,12 +12,25 @@ class Main < Gosu::Window
                 ["#"," "," "," "," ","#"],
                 ["#"," "," "," "," ","#"],
                 ["#","#","#","#","#","#"]]
+        @player = Player.new
+        @tabPositionPlayer = []
+        @world.each_index do |row|
+            @world[row].each_index do |col|
+                if @world[row][col] == " "
+                    @tabPositionPlayer<<{"x"=>row,"y"=>col}
+                end
+            end
+        end
+        puts @tabPositionPlayer
+        @player.positionPlayer(@tabPositionPlayer[5]["x"]*40,@tabPositionPlayer[5]["y"]*40)
     end
 
     def update
+        
     end
 
     def draw
+        @player.draw
         @world.each_index do |row|
             @world[row].each_index do |col|
                 if @world[row][col] == "#"
