@@ -14,10 +14,15 @@ class Main < Gosu::Window
                 ["#","#","#","#","#","#"]]
         @player = Player.new
         @tabPositionPlayer = []
+        @tabPositionWall = []
         @world.each_index do |row|
             @world[row].each_index do |col|
                 if @world[row][col] == " "
                     @tabPositionPlayer<<{"x"=>row,"y"=>col}
+                end
+                
+                if @world[row][col] == "#"
+                    @tabPositionWall<<{"x"=>row,"y"=>col}
                 end
             end
         end
@@ -25,8 +30,13 @@ class Main < Gosu::Window
     end
 
     def update
-        @player.x += 1
-        @player.y += 1
+        if @player.bool
+           @player.y += 1
+        end
+        @player.tabPosition(@tabPositionWall)
+        if Gosu.button_down? Gosu::KB_RIGHT or Gosu.button_down? Gosu::GP_RIGHT
+            @player.rigth
+        end
     end
 
     def draw
