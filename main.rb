@@ -25,7 +25,8 @@ class Main < Gosu::Window
     end
 
     def update
-        
+        @player.x += 1
+        @player.y += 1
     end
 
     def draw
