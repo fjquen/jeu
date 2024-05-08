@@ -15,19 +15,14 @@ class Main < Gosu::Window
         @player = Player.new
         @bool = true
         @tabPositionPlayer = []
-        @tabPositionWall = []
         @world.each_index do |row|
             @world[row].each_index do |col|
                 if @world[row][col] == " "
                     @tabPositionPlayer<<{"x"=>row,"y"=>col}
                 end
-
-                if @world[row][col] == "#"
-                    @tabPositionWall<<{"x"=>row,"y"=>col}
-                end
             end
         end
-        @player.positionPlayer(@tabPositionPlayer[4]["x"]*40,@tabPositionPlayer[4]["y"]*40)
+        @player.x, @player.y = @tabPositionPlayer[4]["x"]*40,@tabPositionPlayer[4]["y"]*40
     end
 
     def update
@@ -35,7 +30,6 @@ class Main < Gosu::Window
             @world[row].each_index do |col|
                 if @world[@player.y/40][@player.x/40] == "#"
                     @bool = false
-                    puts @world[@player.x/40][@player.y/40]
                 elsif @world[@player.y/40][@player.x/40] == " "
                     @bool = true
                 end

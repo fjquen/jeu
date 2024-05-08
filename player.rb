@@ -4,11 +4,6 @@ class Player
         @x=@y=0
     end
 
-    def positionPlayer(x,y)
-        @x = x
-        @y = y
-    end
-
     def rigth
         @x+=1
     end
