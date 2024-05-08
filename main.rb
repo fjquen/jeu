@@ -39,9 +39,13 @@ class Main < Gosu::Window
         if @bool
             @player.y += 1
         end
-       
+        
         if Gosu.button_down? Gosu::KB_RIGHT or Gosu.button_down? Gosu::GP_RIGHT
             @player.rigth
+        end
+        
+        if Gosu.button_down? Gosu::KB_LEFT or Gosu.button_down? Gosu::GP_LEFT
+            @player.left
         end
     end
 

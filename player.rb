@@ -7,7 +7,16 @@ class Player
     def rigth
         @x+=1
     end
+    
+    def left
+        @x-=1
+    end
+    
+    def up
+        @y-=1
+    end
+    
     def draw
-        Gosu.draw_rect(@x, @y, 15, 20,Gosu::Color::RED)
+        Gosu.draw_rect(@x, @y, 15, -20,Gosu::Color::RED)
     end
 end
