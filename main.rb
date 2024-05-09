@@ -13,9 +13,8 @@ class Main < Gosu::Window
                 ["#"," "," "," "," ","#"],
                 ["#","#","#","#","#","#"]]
         @player = Player.new
-        @boolVertical = @boolHorizontal = true
+        @boolVertical = true
         @tabPositionPlayer = []
-        @tabPositionWall = []
         @world.each_index do |row|
             @world[row].each_index do |col|
                 if @world[row][col] == " "
@@ -27,37 +26,24 @@ class Main < Gosu::Window
     end
 
     def update
-        @world.each_index do |row|
-            @world[row].each_index do |col|
-                if @world[@player.y/40][@player.x/40] == "#"
-                    @boolVertical = false
-                elsif @world[@player.y/40][@player.x/40] == " "
-                    @boolVertical = true
-                end
-                if @world[row][col] == "#"
-					if Gosu.distance(@player.y, @player.x, row*40, col*40) < 1
-						puts "ryi"
-					end
-				end
-            end
+         
+        if @world[@player.y/40][@player.x/40] == "#"
+            @boolVertical = false
+        elsif @world[@player.y/40][@player.x/40] == " "
+            @boolVertical = true
         end
-       
-		
+
         if @boolVertical
             @player.y += 1
         end
         
-        if Gosu.button_down? Gosu::KB_RIGHT and @boolHorizontal or Gosu.button_down? Gosu::GP_RIGHT
+        if Gosu.button_down? Gosu::KB_RIGHT or Gosu.button_down? Gosu::GP_RIGHT
             @player.rigth
-            @boolHorizontal = true
         end
         
-        if Gosu.button_down? Gosu::KB_LEFT and @boolHorizontal or Gosu.button_down? Gosu::GP_LEFT
+        if Gosu.button_down? Gosu::KB_LEFT or Gosu.button_down? Gosu::GP_LEFT
             @player.left
-            @boolHorizontal = true
         end
-        
-        
     end
     
     def button_down(id)
@@ -65,7 +51,7 @@ class Main < Gosu::Window
 		when Gosu::KB_ESCAPE
 		  close
 		when Gosu::KB_UP
-		  @player.up
+          @player.up
 		end
 	end
 
