@@ -6,15 +6,16 @@ class Main < Gosu::Window
         super 660,495,false
         @world=[["#","#","#","#","#","#"],
                 ["#"," "," "," "," ","#"],
-                ["#"," "," "," "," ","#"],
                 ["#"," "," ","#"," ","#"],
-                ["#"," ","#","#"," ","#"],
+                ["#"," ","#"," "," ","#"],
+                ["#"," "," "," "," ","#"],
                 ["#"," "," "," "," ","#"],
                 ["#"," "," "," "," ","#"],
                 ["#","#","#","#","#","#"]]
         @player = Player.new
-        @bool = true
+        @boolVertical = @boolHorizontal = true
         @tabPositionPlayer = []
+        @tabPositionWall = []
         @world.each_index do |row|
             @world[row].each_index do |col|
                 if @world[row][col] == " "
@@ -29,24 +30,34 @@ class Main < Gosu::Window
         @world.each_index do |row|
             @world[row].each_index do |col|
                 if @world[@player.y/40][@player.x/40] == "#"
-                    @bool = false
+                    @boolVertical = false
                 elsif @world[@player.y/40][@player.x/40] == " "
-                    @bool = true
+                    @boolVertical = true
                 end
+                if @world[row][col] == "#"
+					if Gosu.distance(@player.y, @player.x, row*40, col*40) < 1
+						puts "ryi"
+					end
+				end
             end
         end
-
-        if @bool
+       
+		
+        if @boolVertical
             @player.y += 1
         end
         
-        if Gosu.button_down? Gosu::KB_RIGHT or Gosu.button_down? Gosu::GP_RIGHT
+        if Gosu.button_down? Gosu::KB_RIGHT and @boolHorizontal or Gosu.button_down? Gosu::GP_RIGHT
             @player.rigth
+            @boolHorizontal = true
         end
         
-        if Gosu.button_down? Gosu::KB_LEFT or Gosu.button_down? Gosu::GP_LEFT
+        if Gosu.button_down? Gosu::KB_LEFT and @boolHorizontal or Gosu.button_down? Gosu::GP_LEFT
             @player.left
+            @boolHorizontal = true
         end
+        
+        
     end
     
     def button_down(id)
