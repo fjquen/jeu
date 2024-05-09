@@ -13,7 +13,7 @@ class Player
     end
     
     def up
-        @y-=1
+        @y-=15
     end
     
     def draw

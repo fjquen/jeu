@@ -48,6 +48,15 @@ class Main < Gosu::Window
             @player.left
         end
     end
+    
+    def button_down(id)
+		case id
+		when Gosu::KB_ESCAPE
+		  close
+		when Gosu::KB_UP
+		  @player.up
+		end
+	end
 
     def draw
         @player.draw
