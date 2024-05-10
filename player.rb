@@ -15,10 +15,6 @@ class Player
     def up
         @y-=15
     end
-
-    def viewZone(tab,y,x)
-        puts tab[y][x]
-    end
     
     def draw
         Gosu.draw_rect(@x, @y, 15, -20,Gosu::Color::RED)

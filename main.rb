@@ -29,6 +29,7 @@ class Main < Gosu::Window
          
         if @world[@player.y/40][@player.x/40] == "#"
             @boolVertical = false
+            
         elsif @world[@player.y/40][@player.x/40] == " "
             @boolVertical = true
         end
@@ -38,6 +39,16 @@ class Main < Gosu::Window
         end
         
         if Gosu.button_down? Gosu::KB_RIGHT or Gosu.button_down? Gosu::GP_RIGHT
+            i = 0
+            @world.each_index do |row|
+                @world[row].each_index do |col|
+                    if @player.x > col * 40 and @player.y == row * 40
+                        i+=1
+                        puts "mur #{i}"
+                    end
+                end
+            end
+              
             @player.rigth
         end
         
