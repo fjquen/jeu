@@ -22,7 +22,7 @@ class Main < Gosu::Window
             end
         end
         rand = @tabPositionPlayer.sample
-        @player.x, @player.y = rand["x"]*40,rand["y"]*40
+        @player.x, @player.y = rand["y"]*40,rand["x"]*40
     end
 
     def update
