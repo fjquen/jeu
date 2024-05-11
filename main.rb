@@ -7,13 +7,12 @@ class Main < Gosu::Window
         @world=[["#","#","#","#","#","#"],
                 ["#"," "," "," "," ","#"],
                 ["#"," "," ","#"," ","#"],
-                ["#"," ","#"," "," ","#"],
+                ["#"," ","#","#"," ","#"],
                 ["#"," "," "," "," ","#"],
                 ["#"," "," "," "," ","#"],
                 ["#"," "," "," "," ","#"],
                 ["#","#","#","#","#","#"]]
         @player = Player.new
-        @boolVertical = true
         @tabPositionPlayer = []
         @world.each_index do |row|
             @world[row].each_index do |col|
@@ -26,35 +25,23 @@ class Main < Gosu::Window
     end
 
     def update
-         
+        @player.y += 1
         if @world[@player.y/40][@player.x/40] == "#"
-            @boolVertical = false
-            
-        elsif @world[@player.y/40][@player.x/40] == " "
-            @boolVertical = true
-        end
-
-        if @boolVertical
-            @player.y += 1
+			@player.y -= 1 
         end
         
-        if Gosu.button_down? Gosu::KB_RIGHT or Gosu.button_down? Gosu::GP_RIGHT
-            i = 0
-            @world.each_index do |row|
-                @world[row].each_index do |col|
-                    if @player.x > col * 40 and @player.y == row * 40
-                        i+=1
-                        puts "mur #{i}"
-                    end
-                end
-            end
-              
-            @player.rigth
-        end
-        
-        if Gosu.button_down? Gosu::KB_LEFT or Gosu.button_down? Gosu::GP_LEFT
-            @player.left
-        end
+        new_x = @player.x - 1 if Gosu.button_down? Gosu::KB_LEFT or Gosu.button_down? Gosu::GP_LEFT
+		new_x = @player.x + 1 if Gosu.button_down? Gosu::KB_RIGHT or Gosu.button_down? Gosu::GP_RIGHT
+		
+		if new_x && @world[@player.y/40][new_x/40] != "#"
+		    @player.x = new_x
+		elsif new_x && @world[@player.y/40][new_x/40] == "#"
+		    if Gosu.button_down? Gosu::KB_RIGHT or Gosu.button_down? Gosu::GP_RIGHT
+			   @player.x = new_x-20
+			elsif Gosu.button_down? Gosu::KB_LEFT or Gosu.button_down? Gosu::GP_LEFT
+			   @player.x = new_x+5
+			end
+		end
     end
     
     def button_down(id)
@@ -62,7 +49,11 @@ class Main < Gosu::Window
 		when Gosu::KB_ESCAPE
 		  close
 		when Gosu::KB_UP
-          @player.up
+			if @world[(@player.y-30)/40][@player.x/40] < "#"
+			  @player.y-=30
+			else
+			  @player.y+=30
+			end
 		end
 	end
 
