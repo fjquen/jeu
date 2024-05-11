@@ -7,6 +7,6 @@ class Player
     
     
     def draw
-        Gosu.draw_rect(@x, @y, 15, -20,Gosu::Color::RED)
+        Gosu.draw_rect(@x, @y, 15, 20,Gosu::Color::RED)
     end
 end

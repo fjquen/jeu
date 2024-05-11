@@ -21,41 +21,15 @@ class Main < Gosu::Window
                 end
             end
         end
-        @player.x, @player.y = @tabPositionPlayer[4]["x"]*40,@tabPositionPlayer[4]["y"]*40
+        rand = @tabPositionPlayer.sample
+        @player.x, @player.y = rand["x"]*40,rand["y"]*40
     end
 
     def update
-        @player.y += 1
-        if @world[@player.y/40][@player.x/40] == "#"
-			@player.y -= 1 
-        end
         
-        new_x = @player.x - 1 if Gosu.button_down? Gosu::KB_LEFT or Gosu.button_down? Gosu::GP_LEFT
-		new_x = @player.x + 1 if Gosu.button_down? Gosu::KB_RIGHT or Gosu.button_down? Gosu::GP_RIGHT
-		
-		if new_x && @world[@player.y/40][new_x/40] != "#"
-		    @player.x = new_x
-		elsif new_x && @world[@player.y/40][new_x/40] == "#"
-		    if Gosu.button_down? Gosu::KB_RIGHT or Gosu.button_down? Gosu::GP_RIGHT
-			   @player.x = new_x-20
-			elsif Gosu.button_down? Gosu::KB_LEFT or Gosu.button_down? Gosu::GP_LEFT
-			   @player.x = new_x+5
-			end
-		end
     end
     
-    def button_down(id)
-		case id
-		when Gosu::KB_ESCAPE
-		  close
-		when Gosu::KB_UP
-			if @world[(@player.y-30)/40][@player.x/40] < "#"
-			  @player.y-=30
-			else
-			  @player.y+=30
-			end
-		end
-	end
+    
 
     def draw
         @player.draw
