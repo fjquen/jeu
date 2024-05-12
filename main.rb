@@ -30,11 +30,15 @@ class Main < Gosu::Window
 	    end
 		
 		if Gosu.button_down? Gosu::KB_RIGHT
-			@player.x+=1
+			if @world[@player.y/40][@player.x/40]!="#"
+				@player.x+=1
+			end
 		end
 		
 		if Gosu.button_down? Gosu::KB_LEFT
+		  if @world[@player.y/40][@player.x/40]!="#"
 			@player.x-=1
+		  end
 		end	
     end
     
