@@ -4,29 +4,32 @@ require "./player.rb"
 class Main < Gosu::Window
     def initialize
         super 660,495,false
-        @world=[["#","#","#","#","#","#"],
-                ["#"," "," "," "," ","#"],
-                ["#"," "," ","#"," ","#"],
-                ["#"," ","#","#"," ","#"],
-                ["#"," "," "," "," ","#"],
-                ["#"," "," "," "," ","#"],
-                ["#"," "," "," "," ","#"],
-                ["#","#","#","#","#","#"]]
+        @world=[["#","#","#","#","#","#","#","#","#","#","#","#"],
+                ["#"," "," "," "," "," "," "," "," "," "," ","#"],
+                ["#"," "," ","#"," "," "," "," "," "," "," ","#"],
+                ["#"," ","#","#"," "," "," "," "," "," "," ","#"],
+                ["#"," "," "," "," "," "," "," "," "," "," ","#"],
+                ["#"," "," "," "," "," "," "," "," "," "," ","#"],
+                ["#"," "," "," "," "," "," "," "," "," "," ","#"],
+                ["#"," "," "," "," "," "," "," "," "," "," ","#"],
+                ["#"," "," "," "," "," "," "," "," "," "," ","#"],
+                ["#"," "," "," "," "," "," "," "," "," "," ","#"],
+                ["#"," "," "," "," "," "," "," "," "," "," ","#"],
+                ["#","#","#","#","#","#","#","#","#","#","#","#"]]
         @player = Player.new
-        @tabPositionPlayer = []
-        @world.each_index do |row|
-            @world[row].each_index do |col|
-                if @world[row][col] == " "
-                    @tabPositionPlayer<<{"x"=>row,"y"=>col}
-                end
-            end
-        end
-        rand = @tabPositionPlayer.sample
-        @player.x, @player.y = rand["y"]*40,rand["x"]*40
+        tabMap = @world.map { |row| row.each_index.select { |i| row[i] != "#" } }
+        x_position = tabMap[rand(tabMap.size)].size*40 
+        y_position = rand(0..tabMap[rand(tabMap.size)].size)*40
+        @player.x, @player.y = x_position == 0 ? 40 : x_position,y_position == 0 ? 40 : y_position
     end
 
     def update
-        
+        if Gosu.button_down? Gosu::KB_RIGHT
+			puts "d"
+        end
+        if Gosu.button_down? Gosu::KB_LEFT
+			puts "g"
+        end
     end
     
     
