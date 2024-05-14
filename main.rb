@@ -1,9 +1,9 @@
 require "gosu"
-require "./player.rb"
 
 class Main < Gosu::Window
     def initialize
-        
+        super 640, 480
+        self.caption = "Game"
     end
 
     def update
@@ -13,7 +13,7 @@ class Main < Gosu::Window
 
     
     def draw
-        @player.draw
+        
     end
    
 end
