@@ -35,6 +35,14 @@ module Area
     end
 
     def player()
-        puts @mazeCreate.map.with_index { |x, i| x * i }
+		level = []
+		@mazeCreate.each_index {|y| 
+		  @mazeCreate[y].each_index {|x| 
+			if @mazeCreate[y][x] == " "
+				level<<{"y"=>y,"x"=>x}
+			end
+		  }
+		}
+		@mazeCreate[level[rand(level.length-1)]["y"]][level[rand(level.length-1)]["x"]]="$"
     end
 end
