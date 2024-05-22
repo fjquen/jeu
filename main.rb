@@ -1,12 +1,13 @@
 require "gosu"
 require './constant.rb'
 require './area.rb'
+require './player.rb'
 
 
 class Main < Gosu::Window
 	include Constant
 	include Area
-
+    
     def initialize
         super WIDTH, HEIGTH
         self.caption = "Game"
@@ -16,12 +17,12 @@ class Main < Gosu::Window
         @mazeCreate[@x][@y] = ' '
 		area_game(LOOP, DIRECTION)
 		position_player()
+        @player = Player.new(@x_player,@y_player,@mazeCreate)
     end
 
     def update
         if Gosu.button_down? Gosu::KB_RIGHT
-            @x_player += 1
-            @mazeCreate[@y_player][@x_player]="$"
+            @player.move(DIRECTION[0])
         end
         
 		if Gosu.button_down? Gosu::KB_LEFT
