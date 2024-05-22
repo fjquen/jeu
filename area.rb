@@ -34,7 +34,7 @@ module Area
 	   }
     end
 
-    def player()
+    def position_player()
 		level = []
 		@mazeCreate.each_index {|y| 
 		  @mazeCreate[y].each_index {|x| 
@@ -43,6 +43,11 @@ module Area
 			end
 		  }
 		}
-		@mazeCreate[level[rand(level.length-1)]["y"]][level[rand(level.length-1)]["x"]]="$"
+		rand_position = rand(level.length-1)
+		x_player = level[rand_position]["x"]
+		y_player = level[rand_position]["y"]
+		@x_player = x_player
+		@y_player = y_player
+		@mazeCreate[y_player][x_player]="$"
     end
 end
