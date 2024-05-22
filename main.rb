@@ -23,6 +23,22 @@ class Main < Gosu::Window
             @x_player += 1
             @mazeCreate[@y_player][@x_player]="$"
         end
+        
+		if Gosu.button_down? Gosu::KB_LEFT
+            @x_player -= 1
+            @mazeCreate[@y_player][@x_player]="$"
+        end
+        
+        
+        if Gosu.button_down? Gosu::KB_UP
+            @y_player -= 1
+            @mazeCreate[@y_player][@x_player]="$"
+        end
+        
+        if Gosu.button_down? Gosu::KB_DOWN
+            @y_player += 1
+            @mazeCreate[@y_player][@x_player]="$"
+        end
     end
     
 
