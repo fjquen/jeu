@@ -15,6 +15,7 @@ class Main < Gosu::Window
         @x,@y=rand_position,rand_position
         @mazeCreate[@x][@y] = ' '
 		area_game(LOOP, DIRECTION)
+		player()
     end
 
     def update

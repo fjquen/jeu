@@ -33,4 +33,8 @@ module Area
 		   end 
 	   }
     end
+
+    def player()
+        puts @mazeCreate.map.with_index { |x, i| x * i }
+    end
 end
