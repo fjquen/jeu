@@ -14,44 +14,49 @@ class Player
 			end
 		  }
 		}
-		rand_position = rand(level.length-1)
-		x_player = level[rand_position]["x"]
-		y_player = level[rand_position]["y"]
-		@x_player = x_player
-		@y_player = y_player
-		area[y_player][x_player]="$"
+		rand_position = rand(level.length-1) 
+		@x_player = level[rand_position]["x"]
+		@y_player = level[rand_position]["y"]
+    @area[@y_player][@x_player]="$"
     end
 
     def move(direction)
-        
         case direction
             when "r"
               x = @x_player
               x+=1
               if area[@y_player][x] != "#"
                 @x_player+=1
-                area[@y_player][@x_player]= "$"                    
+                @area[@y_player][@x_player]= "$"
+                x-=1
+                @area[@y_player][x]= " "         
               end      
             when "l"
               x = @x_player
               x-=1
               if area[@y_player][x] != "#"
                 @x_player-=1
-                area[@y_player][@x_player]= "$"                    
+                area[@y_player][@x_player]= "$"
+                x+=1
+                @area[@y_player][x]= " "                    
               end      
             when "u"
               y = @y_player
               y-=1
               if area[y][@x_player] != "#"
                 @y_player-=1
-                area[@y_player][@x_player]= "$"                    
+                area[@y_player][@x_player]= "$"
+                y+=1
+                @area[y][@x_player]= " "                    
               end      
             when "d"
                 y = @y_player
                 y+=1
                 if area[y][@x_player] != "#"
                   @y_player+=1
-                  area[@y_player][@x_player]= "$"                    
+                  area[@y_player][@x_player]= "$"
+                  y-=1
+                  @area[y][@x_player]= " "                    
                 end
             
         end

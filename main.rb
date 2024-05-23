@@ -17,7 +17,7 @@ class Main < Gosu::Window
         @mazeCreate[@x][@y] = ' '
 		area_game(LOOP, DIRECTION)
         @player = Player.new(@mazeCreate)
-        @player.position_player
+        @player.position_player()
     end
 
     def update
