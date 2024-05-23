@@ -16,11 +16,12 @@ class Main < Gosu::Window
         @x,@y=rand_position,rand_position
         @mazeCreate[@x][@y] = ' '
 		area_game(LOOP, DIRECTION)
-		position_player()
-        @player = Player.new(@x_player,@y_player,@mazeCreate)
+        @player = Player.new(@mazeCreate)
+        @player.position_player
     end
 
     def update
+        
         if Gosu.button_down? Gosu::KB_RIGHT
             @player.move(DIRECTION[0])
         end
