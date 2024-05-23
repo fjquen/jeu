@@ -9,7 +9,7 @@ class Main < Gosu::Window
 	include Area
     
     def initialize
-        super WIDTH, HEIGTH
+        super WIDTH, HEIGTH, false,100
         self.caption = "Game"
         @mazeCreate = Array.new(BLOCK_Y){Array.new(BLOCK_X,"#")}
         rand_position = rand(@mazeCreate.length-1)
@@ -23,20 +23,20 @@ class Main < Gosu::Window
     def update
         
         if Gosu.button_down? Gosu::KB_RIGHT
-            @player.move(DIRECTION[0])
+            @player.move("r")
         end
         
 		if Gosu.button_down? Gosu::KB_LEFT
-            @player.move(DIRECTION[1])
+            @player.move("l")
         end
         
         
         if Gosu.button_down? Gosu::KB_UP
-            @player.move(DIRECTION[2])
+            @player.move("u")
         end
         
         if Gosu.button_down? Gosu::KB_DOWN
-            @player.move(DIRECTION[3])
+            @player.move("d")
         end
     end
     

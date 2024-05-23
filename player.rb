@@ -23,21 +23,36 @@ class Player
     end
 
     def move(direction)
+        
         case direction
-            when direction[0]
+            when "r"
+              x = @x_player
+              x+=1
+              if area[@y_player][x] != "#"
                 @x_player+=1
-                if area[@y_player][@x_player]
-                area[@y_player][@x_player]= "$"
+                area[@y_player][@x_player]= "$"                    
+              end      
+            when "l"
+              x = @x_player
+              x-=1
+              if area[@y_player][x] != "#"
+                @x_player-=1
+                area[@y_player][@x_player]= "$"                    
+              end      
+            when "u"
+              y = @y_player
+              y-=1
+              if area[y][@x_player] != "#"
+                @y_player-=1
+                area[@y_player][@x_player]= "$"                    
+              end      
+            when "d"
+                y = @y_player
+                y+=1
+                if area[y][@x_player] != "#"
+                  @y_player+=1
+                  area[@y_player][@x_player]= "$"                    
                 end
-            when direction[1]
-                @x -= 1
-               
-            when direction[2]
-                @y -= 1
-                
-            when direction[3]
-                @y += 1
-                
             
         end
     end
