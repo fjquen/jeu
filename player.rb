@@ -10,16 +10,16 @@ class Player
         case direction
             when direction[0]
                 @x += 1
-                @area[@y][@x]="$"
+                
             when direction[1]
                 @x -= 1
-                @area[@y][@x]="$"
+               
             when direction[2]
                 @y -= 1
-                @area[@y][@x]="$"
+                
             when direction[3]
                 @y += 1
-                @area[@y][@x]="$"
+                
             
         end
     end
