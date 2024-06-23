@@ -30,6 +30,7 @@ class Player
                 @x_player+=1
                 @area[@y_player][@x_player]["o"]= 2
                 x-=1
+                puts x
                 @area[@y_player][x]["o"]= 1         
               end      
             when "l"

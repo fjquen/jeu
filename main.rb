@@ -14,10 +14,6 @@ class Main < Gosu::Window
         @adjacentMatrice = Array.new(40){Array.new(40,{"i"=>0,"o"=>0})}
         area_test()
         test()
-        
-        rand_position = rand(@adjacentMatrice.length-1)
-        puts rand_position
-        @x,@y=rand_position,rand_position
         @player = Player.new(@adjacentMatrice)
         @player.position_player()
     end
