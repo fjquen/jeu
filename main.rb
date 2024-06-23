@@ -14,7 +14,9 @@ class Main < Gosu::Window
         @adjacentMatrice = Array.new(40){Array.new(40,{"i"=>0,"o"=>0})}
         area_test()
         test()
+        
         rand_position = rand(@adjacentMatrice.length-1)
+        puts rand_position
         @x,@y=rand_position,rand_position
         @player = Player.new(@adjacentMatrice)
         @player.position_player()
@@ -49,11 +51,11 @@ class Main < Gosu::Window
         @adjacentMatrice.each_index do |row|
             @adjacentMatrice[row].each_index do |col|
                 if @adjacentMatrice[row][col]["o"] == 0
-                    Gosu.draw_rect(col*20, row*20, 20, 20,Gosu::Color::BLUE)
+                    Gosu.draw_rect(col*BLOCK_X, row*BLOCK_Y, BLOCK_X, BLOCK_Y,Gosu::Color::BLUE)
                 elsif @adjacentMatrice[row][col]["o"] == 1
-                    Gosu.draw_rect(col*20, row*20, 20, 20,Gosu::Color::BLACK)
+                    Gosu.draw_rect(col*BLOCK_X, row*BLOCK_Y, BLOCK_X, BLOCK_Y,Gosu::Color::BLACK)
                 elsif @adjacentMatrice[row][col]["o"] == 2
-                    Gosu.draw_rect(col*20, row*20, 20, 20,Gosu::Color::RED)
+                    Gosu.draw_rect(col*BLOCK_X, row*BLOCK_Y, BLOCK_X, BLOCK_Y,Gosu::Color::RED)
                 end
             end
         end
