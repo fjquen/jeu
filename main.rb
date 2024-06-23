@@ -11,17 +11,20 @@ class Main < Gosu::Window
     def initialize
         super WIDTH, HEIGTH, false,100
         self.caption = "Game"
-        @mazeCreate = Array.new(BLOCK_Y){Array.new(BLOCK_X,"#")}
-        rand_position = rand(@mazeCreate.length-1)
+        @adjacentMatrice = Array.new(40){Array.new(40,{"i"=>0,"o"=>0})}
+        area_test()
+        test()
+        rand_position = rand(@adjacentMatrice.length-1)
         @x,@y=rand_position,rand_position
-        @mazeCreate[@x][@y] = ' '
-		area_game(LOOP, DIRECTION)
-        @player = Player.new(@mazeCreate)
+        @player = Player.new(@adjacentMatrice)
         @player.position_player()
     end
+    
+
+    
 
     def update
-        
+       
         if Gosu.button_down? Gosu::KB_RIGHT
             @player.move("r")
         end
@@ -43,14 +46,14 @@ class Main < Gosu::Window
 
     
     def draw
-        @mazeCreate.each_index do |row|
-            @mazeCreate[row].each_index do |col|
-                if @mazeCreate[row][col] == "#"
-                    Gosu.draw_rect(col*BLOCK_Y, row*BLOCK_X, BLOCK_Y, BLOCK_X,Gosu::Color::BLUE)
-                elsif @mazeCreate[row][col] == " "
-                    Gosu.draw_rect(col*BLOCK_Y, row*BLOCK_X, BLOCK_Y, BLOCK_X,Gosu::Color::BLACK)
-				elsif @mazeCreate[row][col] == "$"
-                    Gosu.draw_rect(col*BLOCK_Y, row*BLOCK_X, BLOCK_Y, BLOCK_X,Gosu::Color::GREEN)
+        @adjacentMatrice.each_index do |row|
+            @adjacentMatrice[row].each_index do |col|
+                if @adjacentMatrice[row][col]["o"] == 0
+                    Gosu.draw_rect(col*20, row*20, 20, 20,Gosu::Color::BLUE)
+                elsif @adjacentMatrice[row][col]["o"] == 1
+                    Gosu.draw_rect(col*20, row*20, 20, 20,Gosu::Color::BLACK)
+                elsif @adjacentMatrice[row][col]["o"] == 2
+                    Gosu.draw_rect(col*20, row*20, 20, 20,Gosu::Color::RED)
                 end
             end
         end
