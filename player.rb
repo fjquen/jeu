@@ -44,7 +44,7 @@ class Player
             when "u"
               y = @y_player
               y-=1
-              if area[y][@x_player]["o"] != 0
+              if area[y][@x_player]["o"] != wall
                 @y_player-=1
                 area[@y_player][@x_player]["o"]= 2
                 y+=1
