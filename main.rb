@@ -11,11 +11,11 @@ class Main < Gosu::Window
     def initialize
         super WIDTH, HEIGTH, false,100
         self.caption = "Game"
-        @adjacentMatrice = Array.new(40){Array.new(40,{"i"=>0,"o"=>0})}
-        area_test()
-        test()
+        @adjacentMatrice = Array.new(40){Array.new(40,{"i"=>0,"o"=>WALL})}
+        area_test(WALL,VOID)
+        test(WALL,VOID)
         @player = Player.new(@adjacentMatrice)
-        @player.position_player()
+        @player.position_player(VOID)
     end
     
 
@@ -24,20 +24,20 @@ class Main < Gosu::Window
     def update
        
         if Gosu.button_down? Gosu::KB_RIGHT
-            @player.move("r")
+            @player.move("r",WALL,VOID)
         end
         
 		if Gosu.button_down? Gosu::KB_LEFT
-            @player.move("l")
+            @player.move("l",WALL,VOID)
         end
         
         
         if Gosu.button_down? Gosu::KB_UP
-            @player.move("u")
+            @player.move("u",WALL,VOID)
         end
         
         if Gosu.button_down? Gosu::KB_DOWN
-            @player.move("d")
+            @player.move("d",WALL,VOID)
         end
     end
     
@@ -46,9 +46,9 @@ class Main < Gosu::Window
     def draw
         @adjacentMatrice.each_index do |row|
             @adjacentMatrice[row].each_index do |col|
-                if @adjacentMatrice[row][col]["o"] == 0
+                if @adjacentMatrice[row][col]["o"] == WALL
                     Gosu.draw_rect(col*BLOCK_X, row*BLOCK_Y, BLOCK_X, BLOCK_Y,Gosu::Color::BLUE)
-                elsif @adjacentMatrice[row][col]["o"] == 1
+                elsif @adjacentMatrice[row][col]["o"] == VOID
                     Gosu.draw_rect(col*BLOCK_X, row*BLOCK_Y, BLOCK_X, BLOCK_Y,Gosu::Color::BLACK)
                 elsif @adjacentMatrice[row][col]["o"] == 2
                     Gosu.draw_rect(col*BLOCK_X, row*BLOCK_Y, BLOCK_X, BLOCK_Y,Gosu::Color::RED)
