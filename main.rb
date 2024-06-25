@@ -22,7 +22,8 @@ class Main < Gosu::Window
     
 
     def update
-       
+        @camera_y = @player.y_player * BLOCK_Y - @adjacentMatrice.flatten.count(WALL)
+        @camera_x = @player.x_player * BLOCK_X - @adjacentMatrice.flatten.count(WALL)
         if Gosu.button_down? Gosu::KB_RIGHT
             @player.move("r",WALL,VOID,PLAYER)
         end
@@ -44,14 +45,15 @@ class Main < Gosu::Window
 
     
     def draw
+        
         @adjacentMatrice.each_index do |row|
             @adjacentMatrice[row].each_index do |col|
                 if @adjacentMatrice[row][col]["o"] == WALL
-                    Gosu.draw_rect(col*BLOCK_X, row*BLOCK_Y, BLOCK_X, BLOCK_Y,Gosu::Color::BLUE)
+                    Gosu.draw_rect(col*BLOCK_X-@camera_x+40, row*BLOCK_Y-@camera_y+40, BLOCK_X, BLOCK_Y,Gosu::Color::BLUE)
                 elsif @adjacentMatrice[row][col]["o"] == VOID
-                    Gosu.draw_rect(col*BLOCK_X, row*BLOCK_Y, BLOCK_X, BLOCK_Y,Gosu::Color::BLACK)
+                    Gosu.draw_rect(col*BLOCK_X-@camera_x+40, row*BLOCK_Y-@camera_y+40, BLOCK_X, BLOCK_Y,Gosu::Color::BLACK)
                 elsif @adjacentMatrice[row][col]["o"] == PLAYER
-                    Gosu.draw_rect(col*BLOCK_X, row*BLOCK_Y, BLOCK_X, BLOCK_Y,Gosu::Color::RED)
+                    Gosu.draw_rect(col*BLOCK_X-@camera_x+40, row*BLOCK_Y-@camera_y+40, BLOCK_X, BLOCK_Y,Gosu::Color::RED)
                 end
             end
         end

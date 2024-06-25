@@ -63,5 +63,12 @@ class Player
         end
     end
 
+    def x_player
+      return @x_player
+    end
+
+    def y_player
+      return @y_player
+    end
 
 end
