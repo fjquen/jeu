@@ -56,7 +56,6 @@ class Main < Gosu::Window
             end
         end
     end
-   
 end
 
 Main.new.show
