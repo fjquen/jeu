@@ -5,7 +5,7 @@ class Player
        @x_player=@y_player=0
     end
 
-    def position_player(void)
+    def position_player(void,player)
 		level = []
 		@area.each_index {|y| 
 		  @area[y].each_index {|x| 
@@ -18,17 +18,17 @@ class Player
 		rand_position = rand(level.length-1) 
 		@x_player = level[rand_position]["x"]
 		@y_player = level[rand_position]["y"]
-    @area[@y_player][@x_player]["o"]= 2
+    @area[@y_player][@x_player]["o"]= player
     end
 
-    def move(direction,wall,void)
+    def move(direction,wall,void,player)
         case direction
             when "r"
               x = @x_player
               x+=1
               if area[@y_player][x]["o"] != wall
                 @x_player+=1
-                @area[@y_player][@x_player]["o"]= 2
+                @area[@y_player][@x_player]["o"]= player
                 x-=1
                 @area[@y_player][x]["o"]= void         
               end      
@@ -37,7 +37,7 @@ class Player
               x-=1
               if area[@y_player][x]["o"] != wall
                 @x_player-=1
-                area[@y_player][@x_player]["o"]= 2
+                area[@y_player][@x_player]["o"]= player
                 x+=1
                 @area[@y_player][x]["o"]= void                    
               end      
@@ -46,7 +46,7 @@ class Player
               y-=1
               if area[y][@x_player]["o"] != wall
                 @y_player-=1
-                area[@y_player][@x_player]["o"]= 2
+                area[@y_player][@x_player]["o"]= player
                 y+=1
                 @area[y][@x_player]["o"]= void                    
               end      
@@ -55,7 +55,7 @@ class Player
                 y+=1
                 if area[y][@x_player]["o"] != wall
                   @y_player+=1
-                  area[@y_player][@x_player]["o"]= 2
+                  area[@y_player][@x_player]["o"]= player
                   y-=1
                   @area[y][@x_player]["o"]= void                    
                 end

@@ -15,7 +15,7 @@ class Main < Gosu::Window
         area_test(WALL,VOID)
         test(WALL,VOID)
         @player = Player.new(@adjacentMatrice)
-        @player.position_player(VOID)
+        @player.position_player(VOID,PLAYER)
     end
     
 
@@ -24,20 +24,20 @@ class Main < Gosu::Window
     def update
        
         if Gosu.button_down? Gosu::KB_RIGHT
-            @player.move("r",WALL,VOID)
+            @player.move("r",WALL,VOID,PLAYER)
         end
         
 		if Gosu.button_down? Gosu::KB_LEFT
-            @player.move("l",WALL,VOID)
+            @player.move("l",WALL,VOID,PLAYER)
         end
         
         
         if Gosu.button_down? Gosu::KB_UP
-            @player.move("u",WALL,VOID)
+            @player.move("u",WALL,VOID,PLAYER)
         end
         
         if Gosu.button_down? Gosu::KB_DOWN
-            @player.move("d",WALL,VOID)
+            @player.move("d",WALL,VOID,PLAYER)
         end
     end
     
@@ -50,7 +50,7 @@ class Main < Gosu::Window
                     Gosu.draw_rect(col*BLOCK_X, row*BLOCK_Y, BLOCK_X, BLOCK_Y,Gosu::Color::BLUE)
                 elsif @adjacentMatrice[row][col]["o"] == VOID
                     Gosu.draw_rect(col*BLOCK_X, row*BLOCK_Y, BLOCK_X, BLOCK_Y,Gosu::Color::BLACK)
-                elsif @adjacentMatrice[row][col]["o"] == 2
+                elsif @adjacentMatrice[row][col]["o"] == PLAYER
                     Gosu.draw_rect(col*BLOCK_X, row*BLOCK_Y, BLOCK_X, BLOCK_Y,Gosu::Color::RED)
                 end
             end
