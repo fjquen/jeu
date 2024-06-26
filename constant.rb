@@ -1,5 +1,5 @@
 module Constant
-    WIDTH = 640 
+    WIDTH = 640
     HEIGTH = 480
     BLOCK_Y = 20
     BLOCK_X = 20

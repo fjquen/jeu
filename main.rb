@@ -12,7 +12,7 @@ class Main < Gosu::Window
         super WIDTH, HEIGTH, false,100
         self.caption = "Game"
         @adjacentMatrice = Array.new(40){Array.new(40,{"i"=>0,"o"=>WALL})}
-        area_test(WALL,VOID)
+        area_test(WALL,VOID,WIDTH)
         test(WALL,VOID)
         @player = Player.new(@adjacentMatrice)
         @player.position_player(VOID,PLAYER)
