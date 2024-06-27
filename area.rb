@@ -19,7 +19,7 @@ module Area
             fusion = @array_indice.sample
             @adjacentMatrice.each_index do |y|
                 @adjacentMatrice[y].each_index do |x|
-                    if @adjacentMatrice[y][x]["i"] == fusion 
+                    if @adjacentMatrice[y][x]["i"] == fusion and x>1 and y>1 and x<38 and y<38
                         y_adj = y
                         x_adj = x
                         @adjacentMatrice[y][x]["o"] =void
