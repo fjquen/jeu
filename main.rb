@@ -49,11 +49,11 @@ class Main < Gosu::Window
         @adjacentMatrice.each_index do |row|
             @adjacentMatrice[row].each_index do |col|
                 if @adjacentMatrice[row][col]["o"] == WALL
-                    Gosu.draw_rect(col*BLOCK_X-@camera_x+40, row*BLOCK_Y-@camera_y+40, BLOCK_X, BLOCK_Y,Gosu::Color::BLUE)
+                    Gosu.draw_rect(col*BLOCK_X-@camera_x+NUM_BLOCK, row*BLOCK_Y-@camera_y+NUM_BLOCK, BLOCK_X, BLOCK_Y,Gosu::Color::BLUE)
                 elsif @adjacentMatrice[row][col]["o"] == VOID
-                    Gosu.draw_rect(col*BLOCK_X-@camera_x+40, row*BLOCK_Y-@camera_y+40, BLOCK_X, BLOCK_Y,Gosu::Color::BLACK)
+                    Gosu.draw_rect(col*BLOCK_X-@camera_x+NUM_BLOCK, row*BLOCK_Y-@camera_y+NUM_BLOCK, BLOCK_X, BLOCK_Y,Gosu::Color::BLACK)
                 elsif @adjacentMatrice[row][col]["o"] == PLAYER
-                    Gosu.draw_rect(col*BLOCK_X-@camera_x+40, row*BLOCK_Y-@camera_y+40, BLOCK_X, BLOCK_Y,Gosu::Color::RED)
+                    Gosu.draw_rect(col*BLOCK_X-@camera_x+NUM_BLOCK, row*BLOCK_Y-@camera_y+NUM_BLOCK, BLOCK_X, BLOCK_Y,Gosu::Color::RED)
                 end
             end
         end
