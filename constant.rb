@@ -4,7 +4,7 @@ module Constant
     BLOCK_Y = 20
     BLOCK_X = 20
     NUM_BLOCK = 40
-    LOOP = BLOCK_Y*BLOCK_X/2
+    LOOP = NUM_BLOCK*NUM_BLOCK/2
     DIRECTION = ["r","l","d","u"]
     PLAYER = "@"
     WALL = "#"

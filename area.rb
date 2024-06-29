@@ -1,5 +1,5 @@
 module Area
-    def area_test(wall,void,loop,num_block)
+    def area_test(wall,void,looper,num_block)
 		n=0
         @array_indice = []
         @array_fusion = []
@@ -13,7 +13,7 @@ module Area
             end
         end
         @n=0
-        while @n<800
+        while @n<looper
             y_adj = 0
             x_adj = 0
             fusion = @array_indice.sample
