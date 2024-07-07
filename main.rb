@@ -12,8 +12,8 @@ class Main < Gosu::Window
         super WIDTH, HEIGTH, false,100
         self.caption = "Game"
         @adjacentMatrice = Array.new(NUM_BLOCK){Array.new(NUM_BLOCK,{"i"=>0,"o"=>WALL})}
-        area_test(WALL,VOID,LOOP,NUM_BLOCK)
-        test(WALL,VOID,NUM_BLOCK)
+        generate_maze(WALL,VOID,LOOP,NUM_BLOCK)
+        maze_fusion(WALL,VOID,NUM_BLOCK)
         @player = Player.new(@adjacentMatrice)
         @player.position_player(VOID,PLAYER)
     end

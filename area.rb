@@ -1,5 +1,5 @@
 module Area
-    def area_test(wall,void,looper,num_block)
+    def generate_maze(wall,void,looper,num_block)
 		n=0
         @array_indice = []
         @array_fusion = []
@@ -62,7 +62,7 @@ module Area
 
 
 
-    def test(wall,void,num_block)
+    def maze_fusion(wall,void,num_block)
         random = rand(1)
        for n in 0..@array_fusion.length-1
         if random == 0
