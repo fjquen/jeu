@@ -9,4 +9,5 @@ module Constant
     PLAYER = "@"
     WALL = "#"
     VOID = " "
+    TEST = "§"
 end
