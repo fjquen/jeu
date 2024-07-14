@@ -11,6 +11,7 @@ class Main < Gosu::Window
     def initialize
         super WIDTH, HEIGTH, false,100
         self.caption = "Game"
+        @array_dig = []
         @adjacentMatrice = Array.new(NUM_BLOCK){Array.new(NUM_BLOCK,{"i"=>0,"o"=>WALL})}
         generate_maze(WALL,VOID,LOOP,NUM_BLOCK)
         maze_fusion(WALL,VOID,NUM_BLOCK)
@@ -24,7 +25,7 @@ class Main < Gosu::Window
     def update
         @camera_y = @player.y_player * BLOCK_Y - @adjacentMatrice.flatten.count(WALL)-NUM_BLOCK
         @camera_x = @player.x_player * BLOCK_X - @adjacentMatrice.flatten.count(WALL)-NUM_BLOCK
-
+        
         if Gosu.button_down? Gosu::KB_RIGHT
             @player.move("r",WALL,VOID,PLAYER)
         end

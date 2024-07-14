@@ -44,8 +44,10 @@ module Area
         if array_f[i]["x"]+1 < num_block-2 and array_f[i]["x"]+2 < num_block-2
             if @adjacentMatrice[array_f[i]["y"]][array_f[i]["x"]+1]["o"] == wall and @adjacentMatrice[array_f[i]["y"]][array_f[i]["x"]+2]["o"] == void
                 @adjacentMatrice[array_f[i]["y"]][array_f[i]["x"]+1]["o"]= void
+                @array_dig.push({"y"=>array_f[i]["y"],"x"=>array_f[i]["x"]+1})
             elsif @adjacentMatrice[array_f[i]["y"]][array_f[i]["x"]-1]["o"] == wall and @adjacentMatrice[array_f[i]["y"]][array_f[i]["x"]-2]["o"] == void
                 @adjacentMatrice[array_f[i]["y"]][array_f[i]["x"]-1]["o"]= void
+                @array_dig.push({"y"=>array_f[i]["y"],"x"=>array_f[i]["x"]-1})
             end
         end
     end
@@ -54,8 +56,10 @@ module Area
         if array_f[i]["y"]+1 < num_block-2 and array_f[i]["y"]+2< num_block-2
             if @adjacentMatrice[array_f[i]["y"]-1][array_f[i]["x"]]["o"] == wall and @adjacentMatrice[array_f[i]["y"]-2][array_f[i]["x"]]["o"] == void
                 @adjacentMatrice[array_f[i]["y"]-1][array_f[i]["x"]]["o"]= void
+                @array_dig.push({"y"=>array_f[i]["y"]-1,"x"=>array_f[i]["x"]})
             elsif @adjacentMatrice[array_f[i]["y"]+1][array_f[i]["x"]]["o"] == wall and @adjacentMatrice[array_f[i]["y"]+2][array_f[i]["x"]]["o"] == void
                 @adjacentMatrice[array_f[i]["y"]+1][array_f[i]["x"]]["o"]= void
+                @array_dig.push({"y"=>array_f[i]["y"]+1,"x"=>array_f[i]["x"]})
             end
         end
     end
