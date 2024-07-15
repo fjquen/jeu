@@ -24,6 +24,7 @@ module Area
                         x_adj = x
                         @adjacentMatrice[y][x]["o"] =void
                         @array_fusion<<{"x"=>x_adj,"y"=>y_adj}
+                        @array_dig.push({"y"=>y,"x"=>x})
                     end
                 end
             end
@@ -44,10 +45,8 @@ module Area
         if array_f[i]["x"]+1 < num_block-2 and array_f[i]["x"]+2 < num_block-2
             if @adjacentMatrice[array_f[i]["y"]][array_f[i]["x"]+1]["o"] == wall and @adjacentMatrice[array_f[i]["y"]][array_f[i]["x"]+2]["o"] == void
                 @adjacentMatrice[array_f[i]["y"]][array_f[i]["x"]+1]["o"]= void
-                @array_dig.push({"y"=>array_f[i]["y"],"x"=>array_f[i]["x"]+1})
             elsif @adjacentMatrice[array_f[i]["y"]][array_f[i]["x"]-1]["o"] == wall and @adjacentMatrice[array_f[i]["y"]][array_f[i]["x"]-2]["o"] == void
                 @adjacentMatrice[array_f[i]["y"]][array_f[i]["x"]-1]["o"]= void
-                @array_dig.push({"y"=>array_f[i]["y"],"x"=>array_f[i]["x"]-1})
             end
         end
     end
