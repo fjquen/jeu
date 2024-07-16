@@ -17,22 +17,7 @@ class Main < Gosu::Window
         maze_fusion(WALL,VOID,NUM_BLOCK)
         @player = Player.new(@adjacentMatrice)
         @player.position_player(VOID,PLAYER)
-        
-        @array_dig.each do |n|
-           
-            if @adjacentMatrice[n["y"]-1][n["x"]]["o"] == WALL and @adjacentMatrice[n["y"]-2][n["x"]]["o"] == VOID
-                @adjacentMatrice[n["y"]-1][n["x"]]["o"]= TEST
-            elsif @adjacentMatrice[n["y"]+1][n["x"]]["o"] == WALL and @adjacentMatrice[n["y"]+2][n["x"]]["o"] == VOID
-                @adjacentMatrice[n["y"]+1][n["x"]]["o"]= TEST
-            elsif @adjacentMatrice[n["y"]][n["x"]+1]["o"] == WALL and @adjacentMatrice[n["y"]][n["x"]+2]["o"] == VOID
-                @adjacentMatrice[n["y"]][n["x"]+1]["o"]= TEST
-            elsif @adjacentMatrice[n["y"]][n["x"]-1]["o"] == WALL and @adjacentMatrice[n["y"]][n["x"]-2]["o"] == VOID
-                @adjacentMatrice[n["y"]][n["x"]-1]["o"]= TEST
-            end
-        
-            
-        end
-        
+        maze_connection(WALL,VOID)
     end
     
 

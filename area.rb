@@ -75,4 +75,18 @@ module Area
         end
        end
     end
+
+    def maze_connection(wall,void)
+        @array_dig.each do |n|
+            if @adjacentMatrice[n["y"]-1][n["x"]]["o"] == wall and @adjacentMatrice[n["y"]-2][n["x"]]["o"] == void
+                @adjacentMatrice[n["y"]-1][n["x"]]["o"]= void
+            elsif @adjacentMatrice[n["y"]+1][n["x"]]["o"] == wall and @adjacentMatrice[n["y"]+2][n["x"]]["o"] == void
+                @adjacentMatrice[n["y"]+1][n["x"]]["o"]= void
+            elsif @adjacentMatrice[n["y"]][n["x"]+1]["o"] == wall and @adjacentMatrice[n["y"]][n["x"]+2]["o"] == void
+                @adjacentMatrice[n["y"]][n["x"]+1]["o"]= void
+            elsif @adjacentMatrice[n["y"]][n["x"]-1]["o"] == wall and @adjacentMatrice[n["y"]][n["x"]-2]["o"] == void
+                @adjacentMatrice[n["y"]][n["x"]-1]["o"]= void
+            end
+        end
+    end
 end
