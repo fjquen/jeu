@@ -2,6 +2,7 @@ require "gosu"
 require './constant.rb'
 require './area.rb'
 require './player.rb'
+require './exit.rb'
 
 
 class Main < Gosu::Window
