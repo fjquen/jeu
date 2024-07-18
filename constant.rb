@@ -9,5 +9,5 @@ module Constant
     PLAYER = "@"
     WALL = "#"
     VOID = " "
-    TEST = "§"
+    GOAL = "§"
 end
