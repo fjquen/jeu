@@ -1,8 +1,7 @@
 module Area
-    def generate_maze(wall,void,looper,num_block)
-		n=0
-        @array_indice = []
-        @array_fusion = []
+
+    def generate_area_block(wall)
+        n=0
         @adjacentMatrice.each_index do |y|
             @adjacentMatrice[y].each_index do |x|
                 if x<@adjacentMatrice.length
@@ -12,8 +11,11 @@ module Area
                 end
             end
         end
-        @n=0
-        while @n<looper
+    end
+
+    def generate_maze(wall,void,looper,num_block)
+        n=0
+        while n<looper
             y_adj = 0
             x_adj = 0
             fusion = @array_indice.sample
@@ -37,7 +39,7 @@ module Area
                     @adjacentMatrice[y_adj+direction["y"]][x_adj+direction["x"]]["o"] = void
                 end
             end
-            @n+=1
+            n+=1
         end
 	end
 

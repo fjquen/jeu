@@ -21,4 +21,13 @@ class Exit
 		@y_exit = level[rand_position]["y"]
         @area[@y_exit][@x_exit]["o"]= goal
     end
+
+
+	def x_exit
+		return @x_exit
+	end
+  
+	def y_exit
+		return @y_exit
+	end
 end

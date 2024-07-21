@@ -13,14 +13,18 @@ class Main < Gosu::Window
         super WIDTH, HEIGTH, false,100
         self.caption = "Game"
         @array_dig = []
+        @array_indice = []
+        @array_fusion = []
         @adjacentMatrice = Array.new(NUM_BLOCK){Array.new(NUM_BLOCK,{"i"=>0,"o"=>WALL})}
+        generate_area_block(WALL)
         generate_maze(WALL,VOID,LOOP,NUM_BLOCK)
         maze_fusion(WALL,VOID,NUM_BLOCK)
+        maze_connection(WALL,VOID)
         @player = Player.new(@adjacentMatrice)
         @goal = Exit.new(@adjacentMatrice)
         @player.position_player(VOID,PLAYER)
         @goal.position_exit(VOID,GOAL)
-        maze_connection(WALL,VOID)
+        
     end
     
 
@@ -32,6 +36,14 @@ class Main < Gosu::Window
         
         if Gosu.button_down? Gosu::KB_RIGHT
             @player.move("r",WALL,VOID,PLAYER)
+            if @player.y_player == @goal.y_exit && @player.x_player == @goal.x_exit
+                generate_area_block(WALL)
+                generate_maze(WALL,VOID,LOOP,NUM_BLOCK)
+                maze_fusion(WALL,VOID,NUM_BLOCK)
+                maze_connection(WALL,VOID)
+                @player.position_player(VOID,PLAYER)
+                @goal.position_exit(VOID,GOAL)
+            end
         end
         
 		if Gosu.button_down? Gosu::KB_LEFT
