@@ -48,15 +48,39 @@ class Main < Gosu::Window
         
 		if Gosu.button_down? Gosu::KB_LEFT
             @player.move("l",WALL,VOID,PLAYER)
+            if @player.y_player == @goal.y_exit && @player.x_player == @goal.x_exit
+                generate_area_block(WALL)
+                generate_maze(WALL,VOID,LOOP,NUM_BLOCK)
+                maze_fusion(WALL,VOID,NUM_BLOCK)
+                maze_connection(WALL,VOID)
+                @player.position_player(VOID,PLAYER)
+                @goal.position_exit(VOID,GOAL)
+            end
         end
         
         
         if Gosu.button_down? Gosu::KB_UP
             @player.move("u",WALL,VOID,PLAYER)
+            if @player.y_player == @goal.y_exit && @player.x_player == @goal.x_exit
+                generate_area_block(WALL)
+                generate_maze(WALL,VOID,LOOP,NUM_BLOCK)
+                maze_fusion(WALL,VOID,NUM_BLOCK)
+                maze_connection(WALL,VOID)
+                @player.position_player(VOID,PLAYER)
+                @goal.position_exit(VOID,GOAL)
+            end
         end
         
         if Gosu.button_down? Gosu::KB_DOWN
             @player.move("d",WALL,VOID,PLAYER)
+            if @player.y_player == @goal.y_exit && @player.x_player == @goal.x_exit
+                generate_area_block(WALL)
+                generate_maze(WALL,VOID,LOOP,NUM_BLOCK)
+                maze_fusion(WALL,VOID,NUM_BLOCK)
+                maze_connection(WALL,VOID)
+                @player.position_player(VOID,PLAYER)
+                @goal.position_exit(VOID,GOAL)
+            end
         end
     end
     
