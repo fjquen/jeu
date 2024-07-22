@@ -91,4 +91,21 @@ module Area
             end
         end
     end
+
+    def next_level_maze(wall,void,nloop,num_block,player,goal)
+        if @player.y_player == @goal.y_exit && @player.x_player == @goal.x_exit
+            @array_dig = []
+            @array_indice = []
+            @array_fusion = []
+            generate_area_block(wall)
+            generate_maze(wall,void,nloop,num_block)
+            maze_fusion(wall,void,num_block)
+            maze_connection(wall,void)
+            @player.position_player(void,player)
+            @goal.position_exit(void,goal)
+        end
+    end
+
+
+
 end
