@@ -68,7 +68,7 @@ module Area
 
 
     def maze_fusion(wall,void,num_block)
-        random = rand(1)
+        random = rand(2)
        for n in 0..@array_fusion.length-1
         if random == 0
             dig_x(@array_fusion, n,wall,void,num_block)
