@@ -92,7 +92,7 @@ module Area
         end
     end
 
-    def next_level_maze(wall,void,nloop,num_block,player,goal)
+    def next_level_maze(wall,void,nloop,num_block,player,goal,ennemy)
         if @player.y_player == @goal.y_exit && @player.x_player == @goal.x_exit
             @array_dig = []
             @array_indice = []
@@ -103,6 +103,7 @@ module Area
             maze_connection(wall,void)
             @player.position_player(void,player)
             @goal.position_exit(void,goal)
+            @ennemy.position_exit(void,ennemy)
         end
     end
 

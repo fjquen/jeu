@@ -36,26 +36,27 @@ class Main < Gosu::Window
     def update
         @camera_y = @player.y_player * BLOCK_Y - @adjacentMatrice.flatten.count(WALL)-NUM_BLOCK
         @camera_x = @player.x_player * BLOCK_X - @adjacentMatrice.flatten.count(WALL)-NUM_BLOCK
+        @ennemy.move(@player.x_player,@player.y_player,WALL,ENNEMY,VOID)
         
         if Gosu.button_down? Gosu::KB_RIGHT
             @player.move("r",WALL,VOID,PLAYER)
-            next_level_maze(WALL,VOID,LOOP,NUM_BLOCK,PLAYER,GOAL)
+            next_level_maze(WALL,VOID,LOOP,NUM_BLOCK,PLAYER,GOAL,ENNEMY)
         end
         
 		if Gosu.button_down? Gosu::KB_LEFT
             @player.move("l",WALL,VOID,PLAYER)
-            next_level_maze(WALL,VOID,LOOP,NUM_BLOCK,PLAYER,GOAL)
+            next_level_maze(WALL,VOID,LOOP,NUM_BLOCK,PLAYER,GOAL,ENNEMY)
         end
         
         
         if Gosu.button_down? Gosu::KB_UP
             @player.move("u",WALL,VOID,PLAYER)
-            next_level_maze(WALL,VOID,LOOP,NUM_BLOCK,PLAYER,GOAL)
+            next_level_maze(WALL,VOID,LOOP,NUM_BLOCK,PLAYER,GOAL,ENNEMY)
         end
         
         if Gosu.button_down? Gosu::KB_DOWN
             @player.move("d",WALL,VOID,PLAYER)
-            next_level_maze(WALL,VOID,LOOP,NUM_BLOCK,PLAYER,GOAL)
+            next_level_maze(WALL,VOID,LOOP,NUM_BLOCK,PLAYER,GOAL,ENNEMY)
         end
     end
     

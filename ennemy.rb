@@ -5,6 +5,27 @@ class Ennemy
        @x_ennemy=@y_ennemy=0
     end
 
+
+	def move(x_player,y_player,wall,ennemy,void)
+		# puts x_player
+		# puts y_player
+
+		# puts @x_ennemy
+		# puts @y_ennemy
+
+
+		if @x_ennemy < x_player
+				y = @y_ennemy
+                y+=1
+                if area[y][@x_ennemy]["o"] != wall
+                  @y_ennemy+=1
+                  area[@y_ennemy][@x_ennemy]["o"]= ennemy
+                  y-=1
+                  @area[y][@x_ennemy]["o"]= void                    
+                end     
+		end
+	end
+
     def position_exit(void,ennemy)
 		level = []
 		@area.each_index {|y| 
