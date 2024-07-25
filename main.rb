@@ -3,6 +3,7 @@ require './constant.rb'
 require './area.rb'
 require './player.rb'
 require './exit.rb'
+require './ennemy.rb'
 
 
 class Main < Gosu::Window
@@ -22,8 +23,10 @@ class Main < Gosu::Window
         maze_connection(WALL,VOID)
         @player = Player.new(@adjacentMatrice)
         @goal = Exit.new(@adjacentMatrice)
+        @ennemy = Ennemy.new(@adjacentMatrice)
         @player.position_player(VOID,PLAYER)
         @goal.position_exit(VOID,GOAL)
+        @ennemy.position_exit(VOID,ENNEMY)
         
     end
     
@@ -70,6 +73,8 @@ class Main < Gosu::Window
                     Gosu.draw_rect(col*BLOCK_X-@camera_x+NUM_BLOCK, row*BLOCK_Y-@camera_y+NUM_BLOCK, BLOCK_X, BLOCK_Y,Gosu::Color::RED)
                 elsif @adjacentMatrice[row][col]["o"] == GOAL
                     Gosu.draw_rect(col*BLOCK_X-@camera_x+NUM_BLOCK, row*BLOCK_Y-@camera_y+NUM_BLOCK, BLOCK_X, BLOCK_Y,Gosu::Color::WHITE)
+                elsif @adjacentMatrice[row][col]["o"] == ENNEMY
+                    Gosu.draw_rect(col*BLOCK_X-@camera_x+NUM_BLOCK, row*BLOCK_Y-@camera_y+NUM_BLOCK, BLOCK_X, BLOCK_Y,Gosu::Color::YELLOW)
                 end
             end
         end

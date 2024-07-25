@@ -10,4 +10,5 @@ module Constant
     WALL = "#"
     VOID = " "
     GOAL = "§"
+    ENNEMY = "£"
 end
