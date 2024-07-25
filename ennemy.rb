@@ -15,14 +15,14 @@ class Ennemy
 
 
 		if @x_ennemy < x_player
-				y = @y_ennemy
-                y+=1
-                if area[y][@x_ennemy]["o"] != wall
-                  @y_ennemy+=1
-                  area[@y_ennemy][@x_ennemy]["o"]= ennemy
-                  y-=1
-                  @area[y][@x_ennemy]["o"]= void                    
-                end     
+				x = @x_ennemy
+				x+=1
+				if area[@y_ennemy][x]["o"] != wall
+				  @x_ennemy+=1
+				  @area[@y_ennemy][@x_ennemy]["o"]= ennemy
+				  x-=1
+				  @area[@y_ennemy][x]["o"]= void         
+				end      
 		end
 	end
 
