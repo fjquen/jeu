@@ -22,7 +22,7 @@ class Ennemy
 				  x-=1
 				  @area[@y_ennemy][x]["o"]= void         
 				end 
-		elsif  @x_ennemy > x_player
+		elsif @x_ennemy > x_player
 			x = @x_ennemy
 			x-=1
 			if area[@y_ennemy][x]["o"] != wall
@@ -30,7 +30,25 @@ class Ennemy
 				@area[@y_ennemy][@x_ennemy]["o"]= ennemy
 				x+=1
 				@area[@y_ennemy][x]["o"]= void
-			end    
+			end
+		elsif @y_ennemy < y_player
+			y = @y_ennemy
+			y+=1
+			if area[y][@x_ennemy]["o"] != wall
+				@y_ennemy+=1
+				area[@y_ennemy][@x_ennemy]["o"]= ennemy
+				y-=1
+				@area[y][@x_ennemy]["o"]= void                    
+			end
+		elsif @y_ennemy > y_player
+			y = @y_ennemy
+			y-=1
+			if area[y][@x_ennemy]["o"] != wall
+				@y_ennemy-=1
+				area[@y_ennemy][@x_ennemy]["o"]= ennemy
+				y+=1
+				@area[y][@x_ennemy]["o"]= void                    
+			end
 		end
 	end
 
