@@ -61,4 +61,13 @@ class Ennemy
 		@y_ennemy = level[rand_position]["y"]
         @area[@y_ennemy][@x_ennemy]["o"]= ennemy
     end
+
+
+	def x_ennemy
+		return @x_ennemy
+	end
+
+	def y_ennemy
+		return @y_ennemy
+	end
 end

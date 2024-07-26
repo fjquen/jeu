@@ -27,7 +27,8 @@ class Main < Gosu::Window
         @player.position_player(VOID,PLAYER)
         @goal.position_exit(VOID,GOAL)
         @ennemy.position_exit(VOID,ENNEMY)
-        
+        @font = Gosu::Font.new(20)
+        @bool_move = true
     end
     
 
@@ -38,25 +39,27 @@ class Main < Gosu::Window
         @camera_x = @player.x_player * BLOCK_X - @adjacentMatrice.flatten.count(WALL)-NUM_BLOCK
         @ennemy.move(@player.x_player,@player.y_player,WALL,ENNEMY,VOID)
         
-        if Gosu.button_down? Gosu::KB_RIGHT
-            @player.move("r",WALL,VOID,PLAYER)
-            next_level_maze(WALL,VOID,LOOP,NUM_BLOCK,PLAYER,GOAL,ENNEMY)
-        end
-        
-		if Gosu.button_down? Gosu::KB_LEFT
-            @player.move("l",WALL,VOID,PLAYER)
-            next_level_maze(WALL,VOID,LOOP,NUM_BLOCK,PLAYER,GOAL,ENNEMY)
-        end
-        
-        
-        if Gosu.button_down? Gosu::KB_UP
-            @player.move("u",WALL,VOID,PLAYER)
-            next_level_maze(WALL,VOID,LOOP,NUM_BLOCK,PLAYER,GOAL,ENNEMY)
-        end
-        
-        if Gosu.button_down? Gosu::KB_DOWN
-            @player.move("d",WALL,VOID,PLAYER)
-            next_level_maze(WALL,VOID,LOOP,NUM_BLOCK,PLAYER,GOAL,ENNEMY)
+        if @bool_move
+            if Gosu.button_down? Gosu::KB_RIGHT
+                @player.move("r",WALL,VOID,PLAYER)
+                next_level_maze(WALL,VOID,LOOP,NUM_BLOCK,PLAYER,GOAL,ENNEMY)
+            end
+            
+            if Gosu.button_down? Gosu::KB_LEFT
+                @player.move("l",WALL,VOID,PLAYER)
+                next_level_maze(WALL,VOID,LOOP,NUM_BLOCK,PLAYER,GOAL,ENNEMY)
+            end
+            
+            
+            if Gosu.button_down? Gosu::KB_UP
+                @player.move("u",WALL,VOID,PLAYER)
+                next_level_maze(WALL,VOID,LOOP,NUM_BLOCK,PLAYER,GOAL,ENNEMY)
+            end
+            
+            if Gosu.button_down? Gosu::KB_DOWN
+                @player.move("d",WALL,VOID,PLAYER)
+                next_level_maze(WALL,VOID,LOOP,NUM_BLOCK,PLAYER,GOAL,ENNEMY)
+            end
         end
     end
     
@@ -78,6 +81,18 @@ class Main < Gosu::Window
                     Gosu.draw_rect(col*BLOCK_X-@camera_x+NUM_BLOCK, row*BLOCK_Y-@camera_y+NUM_BLOCK, BLOCK_X, BLOCK_Y,Gosu::Color::YELLOW)
                 end
             end
+        end
+
+        draw_font_lose()
+    end
+
+
+    def draw_font_lose
+        if @player.x_player == @ennemy.x_ennemy and @player.y_player == @ennemy.y_ennemy
+          @bool_move = false
+          Gosu.draw_rect(100, 190, 400, 50, Gosu::Color::WHITE)
+          @font.draw_text("t'es mort bitch", 130, 205, 0, 1, 1, Gosu::Color::BLACK)
+          @adjacentMatrice.clear
         end
     end
 end
