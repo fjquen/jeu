@@ -7,12 +7,6 @@ class Ennemy
 
 
 	def move(x_player,y_player,wall,ennemy,void)
-		# puts x_player
-		# puts y_player
-
-		# puts @x_ennemy
-		# puts @y_ennemy
-
 		if @x_ennemy < x_player
 				x = @x_ennemy
 				x+=1
