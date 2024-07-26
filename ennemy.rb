@@ -13,7 +13,6 @@ class Ennemy
 		# puts @x_ennemy
 		# puts @y_ennemy
 
-
 		if @x_ennemy < x_player
 				x = @x_ennemy
 				x+=1
@@ -22,7 +21,16 @@ class Ennemy
 				  @area[@y_ennemy][@x_ennemy]["o"]= ennemy
 				  x-=1
 				  @area[@y_ennemy][x]["o"]= void         
-				end      
+				end 
+		elsif  @x_ennemy > x_player
+			x = @x_ennemy
+			x-=1
+			if area[@y_ennemy][x]["o"] != wall
+				@x_ennemy-=1
+				@area[@y_ennemy][@x_ennemy]["o"]= ennemy
+				x+=1
+				@area[@y_ennemy][x]["o"]= void
+			end    
 		end
 	end
 
