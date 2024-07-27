@@ -103,7 +103,7 @@ module Area
             maze_connection(wall,void)
             @player.position_player(void,player)
             @goal.position_exit(void,goal)
-            @ennemy.position_exit(void,ennemy)
+            @ennemy.position_ennemy(void,ennemy)
         end
     end
 
