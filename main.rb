@@ -26,7 +26,7 @@ class Main < Gosu::Window
         @ennemy = Ennemy.new(@adjacentMatrice)
         @player.position_player(VOID,PLAYER)
         @goal.position_exit(VOID,GOAL)
-        @ennemy.position_exit(VOID,ENNEMY)
+        @ennemy.position_ennemy(VOID,ENNEMY)
         @font = Gosu::Font.new(20)
         @bool_move = true
     end

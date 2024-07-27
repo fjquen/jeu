@@ -46,7 +46,7 @@ class Ennemy
 		end
 	end
 
-    def position_exit(void,ennemy)
+    def position_ennemy(void,ennemy)
 		level = []
 		@area.each_index {|y| 
 		  @area[y].each_index {|x| 
