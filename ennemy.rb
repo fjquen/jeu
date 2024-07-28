@@ -6,38 +6,38 @@ class Ennemy
     end
 
 
-	def move(x_player,y_player,wall,ennemy,void)
-		if @x_ennemy < x_player
+	def move(x_player,y_player,wall,ennemy,void,goal)
+		if @x_ennemy < x_player 
 				x = @x_ennemy
 				x+=1
-				if area[@y_ennemy][x]["o"] != wall
+				if area[@y_ennemy][x]["o"] != wall and area[@y_ennemy][x]["o"] != goal
 				  @x_ennemy+=1
 				  @area[@y_ennemy][@x_ennemy]["o"]= ennemy
 				  x-=1
 				  @area[@y_ennemy][x]["o"]= void         
 				end 
-		elsif @x_ennemy > x_player
+		elsif @x_ennemy > x_player 
 			x = @x_ennemy
 			x-=1
-			if area[@y_ennemy][x]["o"] != wall
+			if area[@y_ennemy][x]["o"] != wall and area[@y_ennemy][x]["o"] != goal
 				@x_ennemy-=1
 				@area[@y_ennemy][@x_ennemy]["o"]= ennemy
 				x+=1
 				@area[@y_ennemy][x]["o"]= void
 			end
-		elsif @y_ennemy < y_player
+		elsif @y_ennemy < y_player 
 			y = @y_ennemy
 			y+=1
-			if area[y][@x_ennemy]["o"] != wall
+			if area[y][@x_ennemy]["o"] != wall and area[y][@x_ennemy]["o"] != goal
 				@y_ennemy+=1
 				area[@y_ennemy][@x_ennemy]["o"]= ennemy
 				y-=1
 				@area[y][@x_ennemy]["o"]= void                    
 			end
-		elsif @y_ennemy > y_player
+		elsif @y_ennemy > y_player 
 			y = @y_ennemy
 			y-=1
-			if area[y][@x_ennemy]["o"] != wall
+			if area[y][@x_ennemy]["o"] != wall and area[y][@x_ennemy]["o"] != goal
 				@y_ennemy-=1
 				area[@y_ennemy][@x_ennemy]["o"]= ennemy
 				y+=1

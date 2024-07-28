@@ -37,7 +37,7 @@ class Main < Gosu::Window
     def update
         @camera_y = @player.y_player * BLOCK_Y - @adjacentMatrice.flatten.count(WALL)-NUM_BLOCK
         @camera_x = @player.x_player * BLOCK_X - @adjacentMatrice.flatten.count(WALL)-NUM_BLOCK
-        @ennemy.move(@player.x_player,@player.y_player,WALL,ENNEMY,VOID)
+        @ennemy.move(@player.x_player,@player.y_player,WALL,ENNEMY,VOID,GOAL)
         
         if @bool_move
             if Gosu.button_down? Gosu::KB_RIGHT
