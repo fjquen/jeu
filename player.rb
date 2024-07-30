@@ -26,7 +26,7 @@ class Player
             when "r"
               x = @x_player
               x+=1
-              if area[@y_player][x]["o"] != wall
+              if area[@y_player][x]["o"] == void
                 @x_player+=1
                 @area[@y_player][@x_player]["o"]= player
                 x-=1
@@ -35,7 +35,7 @@ class Player
             when "l"
               x = @x_player
               x-=1
-              if area[@y_player][x]["o"] != wall
+              if area[@y_player][x]["o"] == void
                 @x_player-=1
                 area[@y_player][@x_player]["o"]= player
                 x+=1
@@ -44,7 +44,7 @@ class Player
             when "u"
               y = @y_player
               y-=1
-              if area[y][@x_player]["o"] != wall
+              if area[y][@x_player]["o"] == void
                 @y_player-=1
                 area[@y_player][@x_player]["o"]= player
                 y+=1
@@ -53,7 +53,7 @@ class Player
             when "d"
                 y = @y_player
                 y+=1
-                if area[y][@x_player]["o"] != wall
+                if area[y][@x_player]["o"] == void
                   @y_player+=1
                   area[@y_player][@x_player]["o"]= player
                   y-=1
