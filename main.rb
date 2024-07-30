@@ -42,23 +42,23 @@ class Main < Gosu::Window
         if @bool_move
             if Gosu.button_down? Gosu::KB_RIGHT
                 @player.move("r",WALL,VOID,PLAYER)
-                next_level_maze(WALL,VOID,LOOP,NUM_BLOCK,PLAYER,GOAL,ENNEMY)
+                next_level_maze(WALL,VOID,LOOP,NUM_BLOCK,PLAYER,GOAL,ENNEMY,@player.y_player,@player.x_player+1)
             end
             
             if Gosu.button_down? Gosu::KB_LEFT
                 @player.move("l",WALL,VOID,PLAYER)
-                next_level_maze(WALL,VOID,LOOP,NUM_BLOCK,PLAYER,GOAL,ENNEMY)
+                next_level_maze(WALL,VOID,LOOP,NUM_BLOCK,PLAYER,GOAL,ENNEMY,@player.y_player,@player.x_player-1)
             end
             
             
             if Gosu.button_down? Gosu::KB_UP
                 @player.move("u",WALL,VOID,PLAYER)
-                next_level_maze(WALL,VOID,LOOP,NUM_BLOCK,PLAYER,GOAL,ENNEMY)
+                next_level_maze(WALL,VOID,LOOP,NUM_BLOCK,PLAYER,GOAL,ENNEMY,@player.y_player-1,@player.x_player)
             end
             
             if Gosu.button_down? Gosu::KB_DOWN
                 @player.move("d",WALL,VOID,PLAYER)
-                next_level_maze(WALL,VOID,LOOP,NUM_BLOCK,PLAYER,GOAL,ENNEMY)
+                next_level_maze(WALL,VOID,LOOP,NUM_BLOCK,PLAYER,GOAL,ENNEMY,@player.y_player+1,@player.x_player)
             end
         end
     end
@@ -83,7 +83,7 @@ class Main < Gosu::Window
             end
         end
 
-        draw_font_lose()
+        #draw_font_lose()
     end
 
 
