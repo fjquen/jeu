@@ -29,17 +29,19 @@ class Main < Gosu::Window
         @ennemy.position_ennemy(VOID,ENNEMY)
         @font = Gosu::Font.new(20)
         @bool_move = true
+        @lose = false
     end
     
 
     
 
     def update
+        if @bool_move
         @camera_y = @player.y_player * BLOCK_Y - @adjacentMatrice.flatten.count(WALL)-NUM_BLOCK
         @camera_x = @player.x_player * BLOCK_X - @adjacentMatrice.flatten.count(WALL)-NUM_BLOCK
         @ennemy.move(@player.x_player,@player.y_player,WALL,ENNEMY,VOID,GOAL)
         
-        if @bool_move
+       
             if Gosu.button_down? Gosu::KB_RIGHT
                 @player.move("r",WALL,VOID,PLAYER)
                 next_level_maze(WALL,VOID,LOOP,NUM_BLOCK,PLAYER,GOAL,ENNEMY,@player.y_player,@player.x_player+1)
@@ -60,6 +62,16 @@ class Main < Gosu::Window
                 @player.move("d",WALL,VOID,PLAYER)
                 next_level_maze(WALL,VOID,LOOP,NUM_BLOCK,PLAYER,GOAL,ENNEMY,@player.y_player+1,@player.x_player)
             end
+        end
+
+        if @ennemy.y_ennemy == @player.y_player and @ennemy.x_ennemy+1 == @player.x_player
+            @lose = true
+        elsif @ennemy.y_ennemy == @player.y_player and @ennemy.x_ennemy-1 == @player.x_player
+            @lose = true
+        elsif @ennemy.y_ennemy+1 == @player.y_player and @ennemy.x_ennemy == @player.x_player
+            @lose = true
+        elsif @ennemy.y_ennemy-1 == @player.y_player and @ennemy.x_ennemy == @player.x_player
+            @lose = true
         end
     end
     
@@ -82,18 +94,18 @@ class Main < Gosu::Window
                 end
             end
         end
-
-        #draw_font_lose()
+        if @lose
+            draw_font_lose()
+        end
     end
 
 
     def draw_font_lose
-        if @player.x_player == @ennemy.x_ennemy and @player.y_player == @ennemy.y_ennemy
+          
           @bool_move = false
           Gosu.draw_rect(100, 190, 400, 50, Gosu::Color::WHITE)
           @font.draw_text("t'es mort bitch", 130, 205, 0, 1, 1, Gosu::Color::BLACK)
           @adjacentMatrice.clear
-        end
     end
 end
 
