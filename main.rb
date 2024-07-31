@@ -101,7 +101,6 @@ class Main < Gosu::Window
 
 
     def draw_font_lose
-          
           @bool_move = false
           Gosu.draw_rect(100, 190, 400, 50, Gosu::Color::WHITE)
           @font.draw_text("t'es mort bitch", 130, 205, 0, 1, 1, Gosu::Color::BLACK)
