@@ -103,7 +103,9 @@ module Area
             maze_connection(wall,void)
             @player.position_player(void,player)
             @goal.position_exit(void,goal)
-            @ennemy.position_ennemy(void,ennemy)
+            for n in 0..5
+                @test[n].position_ennemy(void,ennemy)
+            end
         end
     end
 

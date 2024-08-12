@@ -23,13 +23,22 @@ class Main < Gosu::Window
         maze_connection(WALL,VOID)
         @player = Player.new(@adjacentMatrice)
         @goal = Exit.new(@adjacentMatrice)
-        @ennemy = Ennemy.new(@adjacentMatrice)
+        
         @player.position_player(VOID,PLAYER)
         @goal.position_exit(VOID,GOAL)
-        @ennemy.position_ennemy(VOID,ENNEMY)
         @font = Gosu::Font.new(20)
         @bool_move = true
         @lose = false
+
+        @test = []
+
+        for n in 0..5
+            @test.push(Ennemy.new(@adjacentMatrice))
+        end
+
+        for n in 0..5
+            @test[n].position_ennemy(VOID,ENNEMY)
+        end
     end
     
 
@@ -39,8 +48,10 @@ class Main < Gosu::Window
         if @bool_move
         @camera_y = @player.y_player * BLOCK_Y - @adjacentMatrice.flatten.count(WALL)-NUM_BLOCK
         @camera_x = @player.x_player * BLOCK_X - @adjacentMatrice.flatten.count(WALL)-NUM_BLOCK
-        @ennemy.move(@player.x_player,@player.y_player,WALL,ENNEMY,VOID,GOAL)
         
+        for n in 0..5
+            @test[n].move(@player.x_player,@player.y_player,WALL,ENNEMY,VOID,GOAL)
+        end
        
             if Gosu.button_down? Gosu::KB_RIGHT
                 @player.move("r",WALL,VOID,PLAYER)
@@ -63,15 +74,16 @@ class Main < Gosu::Window
                 next_level_maze(WALL,VOID,LOOP,NUM_BLOCK,PLAYER,GOAL,ENNEMY,@player.y_player+1,@player.x_player)
             end
         end
-
-        if @ennemy.y_ennemy == @player.y_player and @ennemy.x_ennemy+1 == @player.x_player
-            @lose = true
-        elsif @ennemy.y_ennemy == @player.y_player and @ennemy.x_ennemy-1 == @player.x_player
-            @lose = true
-        elsif @ennemy.y_ennemy+1 == @player.y_player and @ennemy.x_ennemy == @player.x_player
-            @lose = true
-        elsif @ennemy.y_ennemy-1 == @player.y_player and @ennemy.x_ennemy == @player.x_player
-            @lose = true
+        for n in 0..5
+            if @test[n].y_ennemy == @player.y_player and  @test[n].x_ennemy+1 == @player.x_player
+                @lose = true
+            elsif @test[n].y_ennemy == @player.y_player and @test[n].x_ennemy-1 == @player.x_player
+                @lose = true
+            elsif @test[n].y_ennemy+1 == @player.y_player and @test[n].x_ennemy == @player.x_player
+                @lose = true
+            elsif @test[n].y_ennemy-1 == @player.y_player and  @test[n].x_ennemy == @player.x_player
+                @lose = true
+            end
         end
     end
     
