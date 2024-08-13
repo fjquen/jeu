@@ -13,32 +13,7 @@ class Main < Gosu::Window
     def initialize
         super WIDTH, HEIGTH, false,100
         self.caption = "Game"
-        @array_dig = []
-        @array_indice = []
-        @array_fusion = []
-        @adjacentMatrice = Array.new(NUM_BLOCK){Array.new(NUM_BLOCK,{"i"=>0,"o"=>WALL})}
-        generate_area_block(WALL)
-        generate_maze(WALL,VOID,LOOP,NUM_BLOCK)
-        maze_fusion(WALL,VOID,NUM_BLOCK)
-        maze_connection(WALL,VOID)
-        @player = Player.new(@adjacentMatrice)
-        @goal = Exit.new(@adjacentMatrice)
-        
-        @player.position_player(VOID,PLAYER)
-        @goal.position_exit(VOID,GOAL)
-        @font = Gosu::Font.new(20)
-        @bool_move = true
-        @lose = false
-
-        @test = []
-
-        for n in 0..5
-            @test.push(Ennemy.new(@adjacentMatrice))
-        end
-
-        for n in 0..5
-            @test[n].position_ennemy(VOID,ENNEMY)
-        end
+        base_game(NUM_BLOCK,WALL,VOID,LOOP,PLAYER,ENNEMY,GOAL)
     end
     
 
@@ -73,6 +48,10 @@ class Main < Gosu::Window
                 @player.move("d",WALL,VOID,PLAYER)
                 next_level_maze(WALL,VOID,LOOP,NUM_BLOCK,PLAYER,GOAL,ENNEMY,@player.y_player+1,@player.x_player)
             end
+        end
+
+        if Gosu.button_down? Gosu::KB_R
+            base_game(NUM_BLOCK,WALL,VOID,LOOP,PLAYER,ENNEMY,GOAL)
         end
         for n in 0..5
             if @test[n].y_ennemy == @player.y_player and  @test[n].x_ennemy+1 == @player.x_player
