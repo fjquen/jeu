@@ -50,8 +50,15 @@ class Main < Gosu::Window
             end
         end
 
-        if Gosu.button_down? Gosu::KB_R
-            base_game(NUM_BLOCK,WALL,VOID,LOOP,PLAYER,ENNEMY,GOAL)
+        def button_down(id)
+            case id
+            when Gosu::KB_ESCAPE
+                close
+            when Gosu::KB_R
+                if @lose
+                 base_game(NUM_BLOCK,WALL,VOID,LOOP,PLAYER,ENNEMY,GOAL)
+                end
+            end
         end
         for n in 0..5
             if @test[n].y_ennemy == @player.y_player and  @test[n].x_ennemy+1 == @player.x_player
