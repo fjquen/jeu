@@ -46,11 +46,11 @@ class Ennemy
 		end
 	end
 
-    def position_ennemy(void,ennemy)
+    def position_ennemy(void,ennemy, player)
 		level = []
 		@area.each_index {|y| 
 		  @area[y].each_index {|x| 
-			if @area[y][x]["o"] == void
+			if @area[y][x]["o"] == void && @area[y][x]["o"] != player
 				level<<{"y"=>y,"x"=>x}
 			end
 		  }

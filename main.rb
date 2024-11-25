@@ -58,6 +58,11 @@ class Main < Gosu::Window
                 if @lose
                  base_game(NUM_BLOCK,WALL,VOID,LOOP,PLAYER,ENNEMY,GOAL)
                 end
+            when Gosu::KB_SPACE
+                @adjacentMatrice[@player.y_player][@player.x_player+1]["o"] = WALL
+                puts @player.y_player
+                puts @player.x_player
+                
             end
         end
         for n in 0..5

@@ -104,7 +104,7 @@ module Area
             @player.position_player(void,player)
             @goal.position_exit(void,goal)
             for n in 0..5
-                @test[n].position_ennemy(void,ennemy)
+                @test[n].position_ennemy(void,ennemy,player)
             end
         end
     end
@@ -135,7 +135,7 @@ module Area
         end
 
         for n in 0..5
-            @test[n].position_ennemy(void,ennemy)
+            @test[n].position_ennemy(void,ennemy,player)
         end
     end
 end
