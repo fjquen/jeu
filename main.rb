@@ -14,6 +14,7 @@ class Main < Gosu::Window
         super WIDTH, HEIGTH, false,100
         self.caption = "Game"
         base_game(NUM_BLOCK,WALL,VOID,LOOP,PLAYER,ENNEMY,GOAL)
+        @direction
     end
     
 
@@ -29,23 +30,27 @@ class Main < Gosu::Window
         end
        
             if Gosu.button_down? Gosu::KB_RIGHT
-                @player.move("r",WALL,VOID,PLAYER)
+                @direction = "r"
+                @player.move(@direction,WALL,VOID,PLAYER)
                 next_level_maze(WALL,VOID,LOOP,NUM_BLOCK,PLAYER,GOAL,ENNEMY,@player.y_player,@player.x_player+1)
             end
             
             if Gosu.button_down? Gosu::KB_LEFT
-                @player.move("l",WALL,VOID,PLAYER)
+                @direction = "l"
+                @player.move(@direction,WALL,VOID,PLAYER)
                 next_level_maze(WALL,VOID,LOOP,NUM_BLOCK,PLAYER,GOAL,ENNEMY,@player.y_player,@player.x_player-1)
             end
             
             
             if Gosu.button_down? Gosu::KB_UP
-                @player.move("u",WALL,VOID,PLAYER)
+                @direction = "u"
+                @player.move(@direction,WALL,VOID,PLAYER)
                 next_level_maze(WALL,VOID,LOOP,NUM_BLOCK,PLAYER,GOAL,ENNEMY,@player.y_player-1,@player.x_player)
             end
             
             if Gosu.button_down? Gosu::KB_DOWN
-                @player.move("d",WALL,VOID,PLAYER)
+                @direction = "d"
+                @player.move(@direction,WALL,VOID,PLAYER)
                 next_level_maze(WALL,VOID,LOOP,NUM_BLOCK,PLAYER,GOAL,ENNEMY,@player.y_player+1,@player.x_player)
             end
         end
@@ -59,10 +64,16 @@ class Main < Gosu::Window
                  base_game(NUM_BLOCK,WALL,VOID,LOOP,PLAYER,ENNEMY,GOAL)
                 end
             when Gosu::KB_SPACE
-                @adjacentMatrice[@player.y_player][@player.x_player+1]["o"] = WALL
-                puts @player.y_player
-                puts @player.x_player
-                
+                case @direction
+                    when "r"
+                        @adjacentMatrice[@player.y_player][@player.x_player+1]["o"] = WALL
+                    when "l"
+                        @adjacentMatrice[@player.y_player][@player.x_player-1]["o"] = WALL
+                    when "u"
+                        @adjacentMatrice[@player.y_player-1][@player.x_player]["o"] = WALL
+                    when "d"
+                        @adjacentMatrice[@player.y_player+1][@player.x_player]["o"] = WALL
+                end
             end
         end
         for n in 0..5
