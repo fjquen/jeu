@@ -15,6 +15,7 @@ class Main < Gosu::Window
         self.caption = "Game"
         base_game(NUM_BLOCK,WALL,VOID,LOOP,PLAYER,ENNEMY,GOAL)
         @direction
+        @i = 0
     end
     
 
@@ -63,6 +64,13 @@ class Main < Gosu::Window
                 if @lose
                  base_game(NUM_BLOCK,WALL,VOID,LOOP,PLAYER,ENNEMY,GOAL)
                 end
+            when Gosu::KB_A
+                if @i < 3
+                 @i+=1
+                else
+                 @i = 0
+                end
+                @direction = DIRECTION[@i]
             when Gosu::KB_SPACE
                 case @direction
                     when "r"
