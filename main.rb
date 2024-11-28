@@ -66,13 +66,21 @@ class Main < Gosu::Window
             when Gosu::KB_SPACE
                 case @direction
                     when "r"
-                        @adjacentMatrice[@player.y_player][@player.x_player+1]["o"] = ATTACK
+                        if @adjacentMatrice[@player.y_player][@player.x_player+1]["o"] != WALL
+                           @adjacentMatrice[@player.y_player][@player.x_player+1]["o"] = ATTACK
+                        end
                     when "l"
-                        @adjacentMatrice[@player.y_player][@player.x_player-1]["o"] = ATTACK
+                        if @adjacentMatrice[@player.y_player][@player.x_player-1]["o"] != WALL
+                           @adjacentMatrice[@player.y_player][@player.x_player-1]["o"] = ATTACK
+                        end
                     when "u"
-                        @adjacentMatrice[@player.y_player-1][@player.x_player]["o"] = ATTACK
+                        if @adjacentMatrice[@player.y_player-1][@player.x_player]["o"] != WALL
+                           @adjacentMatrice[@player.y_player-1][@player.x_player]["o"] = ATTACK
+                        end
                     when "d"
-                        @adjacentMatrice[@player.y_player+1][@player.x_player]["o"] = ATTACK
+                        if @adjacentMatrice[@player.y_player+1][@player.x_player]["o"] != WALL
+                            @adjacentMatrice[@player.y_player+1][@player.x_player]["o"] = ATTACK
+                        end
                 end
             end
         end
