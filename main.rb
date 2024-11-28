@@ -66,13 +66,13 @@ class Main < Gosu::Window
             when Gosu::KB_SPACE
                 case @direction
                     when "r"
-                        @adjacentMatrice[@player.y_player][@player.x_player+1]["o"] = WALL
+                        @adjacentMatrice[@player.y_player][@player.x_player+1]["o"] = ATTACK
                     when "l"
-                        @adjacentMatrice[@player.y_player][@player.x_player-1]["o"] = WALL
+                        @adjacentMatrice[@player.y_player][@player.x_player-1]["o"] = ATTACK
                     when "u"
-                        @adjacentMatrice[@player.y_player-1][@player.x_player]["o"] = WALL
+                        @adjacentMatrice[@player.y_player-1][@player.x_player]["o"] = ATTACK
                     when "d"
-                        @adjacentMatrice[@player.y_player+1][@player.x_player]["o"] = WALL
+                        @adjacentMatrice[@player.y_player+1][@player.x_player]["o"] = ATTACK
                 end
             end
         end
@@ -105,6 +105,8 @@ class Main < Gosu::Window
                     Gosu.draw_rect(col*BLOCK_X-@camera_x+NUM_BLOCK, row*BLOCK_Y-@camera_y+NUM_BLOCK, BLOCK_X, BLOCK_Y,Gosu::Color::WHITE)
                 elsif @adjacentMatrice[row][col]["o"] == ENNEMY
                     Gosu.draw_rect(col*BLOCK_X-@camera_x+NUM_BLOCK, row*BLOCK_Y-@camera_y+NUM_BLOCK, BLOCK_X, BLOCK_Y,Gosu::Color::YELLOW)
+                elsif @adjacentMatrice[row][col]["o"] == ATTACK
+                    Gosu.draw_rect(col*BLOCK_X-@camera_x+NUM_BLOCK, row*BLOCK_Y-@camera_y+NUM_BLOCK, BLOCK_X, BLOCK_Y,Gosu::Color::AQUA)
                 end
             end
         end

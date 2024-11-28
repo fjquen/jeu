@@ -11,4 +11,5 @@ module Constant
     VOID = " "
     GOAL = "§"
     ENNEMY = "£"
+    ATTACK = "&"
 end
