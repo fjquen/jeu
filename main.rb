@@ -23,37 +23,33 @@ class Main < Gosu::Window
 
     def update
         if @bool_move
-        @camera_y = @player.y_player * BLOCK_Y - @adjacentMatrice.flatten.count(WALL)-NUM_BLOCK
-        @camera_x = @player.x_player * BLOCK_X - @adjacentMatrice.flatten.count(WALL)-NUM_BLOCK
+            @camera_y = @player.y_player * BLOCK_Y - @adjacentMatrice.flatten.count(WALL)-NUM_BLOCK
+            @camera_x = @player.x_player * BLOCK_X - @adjacentMatrice.flatten.count(WALL)-NUM_BLOCK
+            
+            for n in 0..5
+                @test[n].move(@player.x_player,@player.y_player,WALL,ENNEMY,VOID,GOAL)
+            end
         
-        for n in 0..5
-            @test[n].move(@player.x_player,@player.y_player,WALL,ENNEMY,VOID,GOAL)
-        end
-       
-            if Gosu.button_down? Gosu::KB_RIGHT
-                @direction = "r"
-                @player.move(@direction,WALL,VOID,PLAYER)
-                next_level_maze(WALL,VOID,LOOP,NUM_BLOCK,PLAYER,GOAL,ENNEMY,@player.y_player,@player.x_player+1)
-            end
-            
-            if Gosu.button_down? Gosu::KB_LEFT
-                @direction = "l"
-                @player.move(@direction,WALL,VOID,PLAYER)
-                next_level_maze(WALL,VOID,LOOP,NUM_BLOCK,PLAYER,GOAL,ENNEMY,@player.y_player,@player.x_player-1)
-            end
-            
-            
-            if Gosu.button_down? Gosu::KB_UP
-                @direction = "u"
-                @player.move(@direction,WALL,VOID,PLAYER)
-                next_level_maze(WALL,VOID,LOOP,NUM_BLOCK,PLAYER,GOAL,ENNEMY,@player.y_player-1,@player.x_player)
-            end
-            
-            if Gosu.button_down? Gosu::KB_DOWN
-                @direction = "d"
-                @player.move(@direction,WALL,VOID,PLAYER)
-                next_level_maze(WALL,VOID,LOOP,NUM_BLOCK,PLAYER,GOAL,ENNEMY,@player.y_player+1,@player.x_player)
-            end
+                if Gosu.button_down? Gosu::KB_RIGHT
+                    @player.move('r',WALL,VOID,PLAYER)
+                    next_level_maze(WALL,VOID,LOOP,NUM_BLOCK,PLAYER,GOAL,ENNEMY,@player.y_player,@player.x_player+1)
+                end
+                
+                if Gosu.button_down? Gosu::KB_LEFT
+                    @player.move("l",WALL,VOID,PLAYER)
+                    next_level_maze(WALL,VOID,LOOP,NUM_BLOCK,PLAYER,GOAL,ENNEMY,@player.y_player,@player.x_player-1)
+                end
+                
+                
+                if Gosu.button_down? Gosu::KB_UP
+                    @player.move("u",WALL,VOID,PLAYER)
+                    next_level_maze(WALL,VOID,LOOP,NUM_BLOCK,PLAYER,GOAL,ENNEMY,@player.y_player-1,@player.x_player)
+                end
+                
+                if Gosu.button_down? Gosu::KB_DOWN
+                    @player.move("d",WALL,VOID,PLAYER)
+                    next_level_maze(WALL,VOID,LOOP,NUM_BLOCK,PLAYER,GOAL,ENNEMY,@player.y_player+1,@player.x_player)
+                end
         end
 
         def button_down(id)
@@ -64,31 +60,35 @@ class Main < Gosu::Window
                 if @lose
                  base_game(NUM_BLOCK,WALL,VOID,LOOP,PLAYER,ENNEMY,GOAL)
                 end
-            when Gosu::KB_A
-                if @i < 3
-                 @i+=1
-                else
-                 @i = 0
-                end
-                @direction = DIRECTION[@i]
+
+            when Gosu::KB_RIGHT
+                @direction = "r"
+            when Gosu::KB_LEFT
+                @direction = "l"
+            when Gosu::KB_UP
+                @direction = "u"
+            when Gosu::KB_DOWN
+                @direction = "d"
             when Gosu::KB_SPACE
-                case @direction
-                    when "r"
-                        if @adjacentMatrice[@player.y_player][@player.x_player+1]["o"] != WALL
-                           @adjacentMatrice[@player.y_player][@player.x_player+1]["o"] = ATTACK
-                        end
-                    when "l"
-                        if @adjacentMatrice[@player.y_player][@player.x_player-1]["o"] != WALL
-                           @adjacentMatrice[@player.y_player][@player.x_player-1]["o"] = ATTACK
-                        end
-                    when "u"
-                        if @adjacentMatrice[@player.y_player-1][@player.x_player]["o"] != WALL
-                           @adjacentMatrice[@player.y_player-1][@player.x_player]["o"] = ATTACK
-                        end
-                    when "d"
-                        if @adjacentMatrice[@player.y_player+1][@player.x_player]["o"] != WALL
-                            @adjacentMatrice[@player.y_player+1][@player.x_player]["o"] = ATTACK
-                        end
+                if @bool_move
+                    case @direction
+                        when "r"
+                            if @adjacentMatrice[@player.y_player][@player.x_player+1]["o"] != WALL
+                            @adjacentMatrice[@player.y_player][@player.x_player+1]["o"] = ATTACK
+                            end
+                        when "l"
+                            if @adjacentMatrice[@player.y_player][@player.x_player-1]["o"] != WALL
+                            @adjacentMatrice[@player.y_player][@player.x_player-1]["o"] = ATTACK
+                            end
+                        when "u"
+                            if @adjacentMatrice[@player.y_player-1][@player.x_player]["o"] != WALL
+                            @adjacentMatrice[@player.y_player-1][@player.x_player]["o"] = ATTACK
+                            end
+                        when "d"
+                            if @adjacentMatrice[@player.y_player+1][@player.x_player]["o"] != WALL
+                                @adjacentMatrice[@player.y_player+1][@player.x_player]["o"] = ATTACK
+                            end
+                    end
                 end
             end
         end
