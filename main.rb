@@ -17,9 +17,6 @@ class Main < Gosu::Window
         @direction
         @i = 0
     end
-    
-
-    
 
     def update
         if @bool_move
