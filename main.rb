@@ -87,17 +87,23 @@ class Main < Gosu::Window
                             end
                     end
                 end
+            when Gosu::KB_LEFT_ALT
+                if @lose == false
+                    @adjacentMatrice[@player.y_player][@player.x_player]["o"]=WALL
+                end
             end
         end
         for n in 0..5
-            if @test[n].y_ennemy == @player.y_player and  @test[n].x_ennemy+1 == @player.x_player
-                @lose = true
-            elsif @test[n].y_ennemy == @player.y_player and @test[n].x_ennemy-1 == @player.x_player
-                @lose = true
-            elsif @test[n].y_ennemy+1 == @player.y_player and @test[n].x_ennemy == @player.x_player
-                @lose = true
-            elsif @test[n].y_ennemy-1 == @player.y_player and  @test[n].x_ennemy == @player.x_player
-                @lose = true
+            if @lose == false
+                if @test[n].y_ennemy == @player.y_player and  @test[n].x_ennemy+1 == @player.x_player and @adjacentMatrice[@player.y_player][@player.x_player]["o"]!=WALL
+                    @lose = true
+                elsif @test[n].y_ennemy == @player.y_player and @test[n].x_ennemy-1 == @player.x_player and @adjacentMatrice[@player.y_player][@player.x_player]["o"]!=WALL
+                    @lose = true
+                elsif @test[n].y_ennemy+1 == @player.y_player and @test[n].x_ennemy == @player.x_player and @adjacentMatrice[@player.y_player][@player.x_player]["o"]!=WALL
+                    @lose = true
+                elsif @test[n].y_ennemy-1 == @player.y_player and  @test[n].x_ennemy == @player.x_player and @adjacentMatrice[@player.y_player][@player.x_player]["o"]!=WALL
+                    @lose = true
+            end
             end
         end
     end
