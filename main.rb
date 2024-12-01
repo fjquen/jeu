@@ -103,7 +103,7 @@ class Main < Gosu::Window
                     @lose = true
                 elsif @test[n].y_ennemy-1 == @player.y_player and  @test[n].x_ennemy == @player.x_player and @adjacentMatrice[@player.y_player][@player.x_player]["o"]!=WALL
                     @lose = true
-            end
+                end
             end
         end
     end
