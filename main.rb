@@ -5,7 +5,6 @@ require './player.rb'
 require './exit.rb'
 require './ennemy.rb'
 
-
 class Main < Gosu::Window
 	include Constant
 	include Area
@@ -27,26 +26,26 @@ class Main < Gosu::Window
                 @test[n].move(@player.x_player,@player.y_player,WALL,ENNEMY,VOID,GOAL)
             end
         
-                if Gosu.button_down? Gosu::KB_RIGHT
-                    @player.move('r',WALL,VOID,PLAYER)
-                    next_level_maze(WALL,VOID,LOOP,NUM_BLOCK,PLAYER,GOAL,ENNEMY,@player.y_player,@player.x_player+1)
-                end
-                
-                if Gosu.button_down? Gosu::KB_LEFT
-                    @player.move("l",WALL,VOID,PLAYER)
-                    next_level_maze(WALL,VOID,LOOP,NUM_BLOCK,PLAYER,GOAL,ENNEMY,@player.y_player,@player.x_player-1)
-                end
-                
-                
-                if Gosu.button_down? Gosu::KB_UP
-                    @player.move("u",WALL,VOID,PLAYER)
-                    next_level_maze(WALL,VOID,LOOP,NUM_BLOCK,PLAYER,GOAL,ENNEMY,@player.y_player-1,@player.x_player)
-                end
-                
-                if Gosu.button_down? Gosu::KB_DOWN
-                    @player.move("d",WALL,VOID,PLAYER)
-                    next_level_maze(WALL,VOID,LOOP,NUM_BLOCK,PLAYER,GOAL,ENNEMY,@player.y_player+1,@player.x_player)
-                end
+            if Gosu.button_down? Gosu::KB_RIGHT
+                @player.move('r',WALL,VOID,PLAYER)
+                next_level_maze(WALL,VOID,LOOP,NUM_BLOCK,PLAYER,GOAL,ENNEMY,@player.y_player,@player.x_player+1)
+            end
+            
+            if Gosu.button_down? Gosu::KB_LEFT
+                @player.move("l",WALL,VOID,PLAYER)
+                next_level_maze(WALL,VOID,LOOP,NUM_BLOCK,PLAYER,GOAL,ENNEMY,@player.y_player,@player.x_player-1)
+            end
+            
+            
+            if Gosu.button_down? Gosu::KB_UP
+                @player.move("u",WALL,VOID,PLAYER)
+                next_level_maze(WALL,VOID,LOOP,NUM_BLOCK,PLAYER,GOAL,ENNEMY,@player.y_player-1,@player.x_player)
+            end
+            
+            if Gosu.button_down? Gosu::KB_DOWN
+                @player.move("d",WALL,VOID,PLAYER)
+                next_level_maze(WALL,VOID,LOOP,NUM_BLOCK,PLAYER,GOAL,ENNEMY,@player.y_player+1,@player.x_player)
+            end
         end
 
         def button_down(id)
@@ -71,19 +70,19 @@ class Main < Gosu::Window
                     case @direction
                         when "r"
                             if @adjacentMatrice[@player.y_player][@player.x_player+1]["o"] != WALL
-                            @adjacentMatrice[@player.y_player][@player.x_player+1]["o"] = ATTACK
+                              @adjacentMatrice[@player.y_player][@player.x_player+1]["o"] = ATTACK
                             end
                         when "l"
                             if @adjacentMatrice[@player.y_player][@player.x_player-1]["o"] != WALL
-                            @adjacentMatrice[@player.y_player][@player.x_player-1]["o"] = ATTACK
+                              @adjacentMatrice[@player.y_player][@player.x_player-1]["o"] = ATTACK
                             end
                         when "u"
                             if @adjacentMatrice[@player.y_player-1][@player.x_player]["o"] != WALL
-                            @adjacentMatrice[@player.y_player-1][@player.x_player]["o"] = ATTACK
+                              @adjacentMatrice[@player.y_player-1][@player.x_player]["o"] = ATTACK
                             end
                         when "d"
                             if @adjacentMatrice[@player.y_player+1][@player.x_player]["o"] != WALL
-                                @adjacentMatrice[@player.y_player+1][@player.x_player]["o"] = ATTACK
+                              @adjacentMatrice[@player.y_player+1][@player.x_player]["o"] = ATTACK
                             end
                     end
                 end
