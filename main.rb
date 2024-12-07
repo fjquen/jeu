@@ -49,43 +49,10 @@ class Main < Gosu::Window
                 @player.move("d",WALL,VOID,PLAYER)
                 next_level_maze(WALL,VOID,LOOP,NUM_BLOCK,PLAYER,GOAL,ENNEMY,@player.y_player+1,@player.x_player)
             end
-
-            if Gosu.button_down? Gosu::KB_SPACE 
-                if @bool_move 
-                    case @direction
-                        when "r"
-                            if @adjacentMatrice[@player.y_player][@player.x_player+1]["o"] != WALL
-                              for n in 1..5
-                                
-                                 @adjacentMatrice[@player.y_player][@player.x_player+n]["o"] = ATTACK
-                                
-                              end
-                            end
-                        when "l"
-                            if @adjacentMatrice[@player.y_player][@player.x_player-1]["o"] != WALL
-                              for n in 1..5
-                                @adjacentMatrice[@player.y_player][@player.x_player-n]["o"] = ATTACK
-                              end
-                            end
-                        when "u"
-                            if @adjacentMatrice[@player.y_player-1][@player.x_player]["o"] != WALL
-                                for n in 1..5
-                                 @adjacentMatrice[@player.y_player-n][@player.x_player]["o"] = ATTACK
-                                end
-                            end
-                        when "d"
-                            if @adjacentMatrice[@player.y_player+1][@player.x_player]["o"] != WALL
-                                for n in 1..5
-                                    @adjacentMatrice[@player.y_player+n][@player.x_player]["o"] = ATTACK
-                                end
-                            end
-                    end
-                end
-            end
         end
 
         for n in 0..@nbr
-            if @lose == false and @test[n] != nil
+            if @lose == false
                 if @test[n].y_ennemy == @player.y_player and  @test[n].x_ennemy+1 == @player.x_player and @adjacentMatrice[@player.y_player][@player.x_player]["o"]!=WALL
                     @lose = true
                 elsif @test[n].y_ennemy == @player.y_player and @test[n].x_ennemy-1 == @player.x_player and @adjacentMatrice[@player.y_player][@player.x_player]["o"]!=WALL
@@ -94,12 +61,6 @@ class Main < Gosu::Window
                     @lose = true
                 elsif @test[n].y_ennemy-1 == @player.y_player and  @test[n].x_ennemy == @player.x_player and @adjacentMatrice[@player.y_player][@player.x_player]["o"]!=WALL
                     @lose = true
-                end
-                
-               
-                if @adjacentMatrice[@test[n].y_ennemy][@test[n].x_ennemy]["o"] == ATTACK
-                    @adjacentMatrice[@test[n].y_ennemy][@test[n].x_ennemy]["o"] = VOID
-                    @test.delete_at(n)
                 end
             end
         end
@@ -144,8 +105,6 @@ class Main < Gosu::Window
                     Gosu.draw_rect(col*BLOCK_X-@camera_x+NUM_BLOCK, row*BLOCK_Y-@camera_y+NUM_BLOCK, BLOCK_X, BLOCK_Y,Gosu::Color::WHITE)
                 elsif @adjacentMatrice[row][col]["o"] == ENNEMY
                     Gosu.draw_rect(col*BLOCK_X-@camera_x+NUM_BLOCK, row*BLOCK_Y-@camera_y+NUM_BLOCK, BLOCK_X, BLOCK_Y,Gosu::Color::YELLOW)
-                elsif @adjacentMatrice[row][col]["o"] == ATTACK
-                    Gosu.draw_rect(col*BLOCK_X-@camera_x+NUM_BLOCK, row*BLOCK_Y-@camera_y+NUM_BLOCK, BLOCK_X, BLOCK_Y,Gosu::Color::AQUA)
                 end
             end
         end
