@@ -15,6 +15,7 @@ class Main < Gosu::Window
         base_game(NUM_BLOCK,WALL,VOID,LOOP,PLAYER,ENNEMY,GOAL)
         @direction
         @i = 0
+        @nbr = @test.length-1
     end
 
     def update
@@ -48,7 +49,7 @@ class Main < Gosu::Window
             end
         end
 
-        for n in 0..5
+        for n in 0..@nbr
             if @lose == false
                 if @test[n].y_ennemy == @player.y_player and  @test[n].x_ennemy+1 == @player.x_player and @adjacentMatrice[@player.y_player][@player.x_player]["o"]!=WALL
                     @lose = true
@@ -59,12 +60,15 @@ class Main < Gosu::Window
                 elsif @test[n].y_ennemy-1 == @player.y_player and  @test[n].x_ennemy == @player.x_player and @adjacentMatrice[@player.y_player][@player.x_player]["o"]!=WALL
                     @lose = true
                 end
-
+                
+                if @adjacentMatrice[@test[n].y_ennemy][@test[n].x_ennemy]["o"] == ATTACK
+                    @adjacentMatrice[@test[n].y_ennemy][@test[n].x_ennemy]["o"] = VOID
+                end
             end
 
-            # if @adjacentMatrice[@test[n].y_ennemy][@test[n].x_ennemy]["o"] == ATTACK
-            #     @adjacentMatrice[@test[n].y_ennemy][@test[n].x_ennemy]["o"] = VOID
-            # end
+           
+
+            
         end
 
         
