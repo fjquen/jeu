@@ -49,6 +49,38 @@ class Main < Gosu::Window
                 @player.move("d",WALL,VOID,PLAYER)
                 next_level_maze(WALL,VOID,LOOP,NUM_BLOCK,PLAYER,GOAL,ENNEMY,@player.y_player+1,@player.x_player)
             end
+
+            if Gosu.button_down? Gosu::KB_SPACE 
+                if @bool_move 
+                    case @direction
+                        when "r"
+                            if @adjacentMatrice[@player.y_player][@player.x_player+1]["o"] != WALL
+                              for n in 1..5
+                               @adjacentMatrice[@player.y_player][@player.x_player+n]["o"] = ATTACK
+                              
+                              end
+                            end
+                        when "l"
+                            if @adjacentMatrice[@player.y_player][@player.x_player-1]["o"] != WALL
+                              for n in 1..5
+                                @adjacentMatrice[@player.y_player][@player.x_player-n]["o"] = ATTACK
+                              end
+                            end
+                        when "u"
+                            if @adjacentMatrice[@player.y_player-1][@player.x_player]["o"] != WALL
+                                for n in 1..5
+                                 @adjacentMatrice[@player.y_player-n][@player.x_player]["o"] = ATTACK
+                                end
+                            end
+                        when "d"
+                            if @adjacentMatrice[@player.y_player+1][@player.x_player]["o"] != WALL
+                                for n in 1..5
+                                    @adjacentMatrice[@player.y_player+n][@player.x_player]["o"] = ATTACK
+                                end
+                            end
+                    end
+                end
+            end
         end
 
         for n in 0..@nbr
@@ -88,36 +120,7 @@ class Main < Gosu::Window
         when Gosu::KB_UP
             @direction = "u"
         when Gosu::KB_DOWN
-            @direction = "d"
-        when Gosu::KB_SPACE
-            if @bool_move 
-                case @direction
-                    when "r"
-                        if @adjacentMatrice[@player.y_player][@player.x_player+1]["o"] != WALL
-                          for n in 1..5
-                           @adjacentMatrice[@player.y_player][@player.x_player+n]["o"] = ATTACK
-                          end
-                        end
-                    when "l"
-                        if @adjacentMatrice[@player.y_player][@player.x_player-1]["o"] != WALL
-                          for n in 1..5
-                            @adjacentMatrice[@player.y_player][@player.x_player-n]["o"] = ATTACK
-                          end
-                        end
-                    when "u"
-                        if @adjacentMatrice[@player.y_player-1][@player.x_player]["o"] != WALL
-                            for n in 1..5
-                             @adjacentMatrice[@player.y_player-n][@player.x_player]["o"] = ATTACK
-                            end
-                        end
-                    when "d"
-                        if @adjacentMatrice[@player.y_player+1][@player.x_player]["o"] != WALL
-                            for n in 1..5
-                                @adjacentMatrice[@player.y_player+n][@player.x_player]["o"] = ATTACK
-                            end
-                        end
-                end
-            end
+            @direction = "d"        
         when Gosu::KB_LEFT_ALT
             if @lose == false
                 @adjacentMatrice[@player.y_player][@player.x_player]["o"]=WALL
