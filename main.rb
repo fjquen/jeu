@@ -23,8 +23,10 @@ class Main < Gosu::Window
             @camera_y = @player.y_player * BLOCK_Y - @adjacentMatrice.flatten.count(WALL)-NUM_BLOCK
             @camera_x = @player.x_player * BLOCK_X - @adjacentMatrice.flatten.count(WALL)-NUM_BLOCK
             
-            for n in 0..5
-                @test[n].move(@player.x_player,@player.y_player,WALL,ENNEMY,VOID,GOAL)
+            for n in 0..@nbr
+                if @test[n] != nil
+                    @test[n].move(@player.x_player,@player.y_player,WALL,ENNEMY,VOID,GOAL)
+                end
             end
         
             if Gosu.button_down? Gosu::KB_RIGHT
@@ -50,7 +52,7 @@ class Main < Gosu::Window
         end
 
         for n in 0..@nbr
-            if @lose == false
+            if @lose == false and @test[n] != nil
                 if @test[n].y_ennemy == @player.y_player and  @test[n].x_ennemy+1 == @player.x_player and @adjacentMatrice[@player.y_player][@player.x_player]["o"]!=WALL
                     @lose = true
                 elsif @test[n].y_ennemy == @player.y_player and @test[n].x_ennemy-1 == @player.x_player and @adjacentMatrice[@player.y_player][@player.x_player]["o"]!=WALL
@@ -63,15 +65,12 @@ class Main < Gosu::Window
                 
                 if @adjacentMatrice[@test[n].y_ennemy][@test[n].x_ennemy]["o"] == ATTACK
                     @adjacentMatrice[@test[n].y_ennemy][@test[n].x_ennemy]["o"] = VOID
+                    puts n
+
+                    @test.delete_at(n)
                 end
             end
-
-           
-
-            
         end
-
-        
     end
     
     def button_down(id)
