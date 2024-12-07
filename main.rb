@@ -57,7 +57,6 @@ class Main < Gosu::Window
                             if @adjacentMatrice[@player.y_player][@player.x_player+1]["o"] != WALL
                               for n in 1..5
                                @adjacentMatrice[@player.y_player][@player.x_player+n]["o"] = ATTACK
-                              
                               end
                             end
                         when "l"
