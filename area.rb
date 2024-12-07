@@ -97,17 +97,26 @@ module Area
             @array_dig = []
             @array_indice = []
             @array_fusion = []
+            @adjacentMatrice = Array.new(num_block){Array.new(num_block,{"i"=>0,"o"=>wall})}
             generate_area_block(wall)
             generate_maze(wall,void,nloop,num_block)
             maze_fusion(wall,void,num_block)
             maze_connection(wall,void)
+            @player = Player.new(@adjacentMatrice)
+            @goal = Exit.new(@adjacentMatrice)
             @player.position_player(void,player)
             @goal.position_exit(void,goal)
+
+            for n in 0..5
+                @test.push(Ennemy.new(@adjacentMatrice))
+            end
+
             for n in 0..5
                 if @test[n] != nil
                     @test[n].position_ennemy(void,ennemy,player)
                 end
             end
+            puts @test
         end
     end
 
