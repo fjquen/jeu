@@ -48,50 +48,6 @@ class Main < Gosu::Window
             end
         end
 
-        def button_down(id)
-            case id
-            when Gosu::KB_ESCAPE
-                close
-            when Gosu::KB_R
-                if @lose
-                 base_game(NUM_BLOCK,WALL,VOID,LOOP,PLAYER,ENNEMY,GOAL)
-                end
-
-            when Gosu::KB_RIGHT
-                @direction = "r"
-            when Gosu::KB_LEFT
-                @direction = "l"
-            when Gosu::KB_UP
-                @direction = "u"
-            when Gosu::KB_DOWN
-                @direction = "d"
-            when Gosu::KB_SPACE
-                if @bool_move
-                    case @direction
-                        when "r"
-                            if @adjacentMatrice[@player.y_player][@player.x_player+1]["o"] != WALL
-                              @adjacentMatrice[@player.y_player][@player.x_player+1]["o"] = ATTACK
-                            end
-                        when "l"
-                            if @adjacentMatrice[@player.y_player][@player.x_player-1]["o"] != WALL
-                              @adjacentMatrice[@player.y_player][@player.x_player-1]["o"] = ATTACK
-                            end
-                        when "u"
-                            if @adjacentMatrice[@player.y_player-1][@player.x_player]["o"] != WALL
-                              @adjacentMatrice[@player.y_player-1][@player.x_player]["o"] = ATTACK
-                            end
-                        when "d"
-                            if @adjacentMatrice[@player.y_player+1][@player.x_player]["o"] != WALL
-                              @adjacentMatrice[@player.y_player+1][@player.x_player]["o"] = ATTACK
-                            end
-                    end
-                end
-            when Gosu::KB_LEFT_ALT
-                if @lose == false
-                    @adjacentMatrice[@player.y_player][@player.x_player]["o"]=WALL
-                end
-            end
-        end
         for n in 0..5
             if @lose == false
                 if @test[n].y_ennemy == @player.y_player and  @test[n].x_ennemy+1 == @player.x_player and @adjacentMatrice[@player.y_player][@player.x_player]["o"]!=WALL
@@ -107,6 +63,58 @@ class Main < Gosu::Window
         end
     end
     
+    def button_down(id)
+        case id
+        when Gosu::KB_ESCAPE
+            close
+        when Gosu::KB_R
+            if @lose
+             base_game(NUM_BLOCK,WALL,VOID,LOOP,PLAYER,ENNEMY,GOAL)
+            end
+
+        when Gosu::KB_RIGHT
+            @direction = "r"
+        when Gosu::KB_LEFT
+            @direction = "l"
+        when Gosu::KB_UP
+            @direction = "u"
+        when Gosu::KB_DOWN
+            @direction = "d"
+        when Gosu::KB_SPACE
+            if @bool_move
+                case @direction
+                    when "r"
+                        if @adjacentMatrice[@player.y_player][@player.x_player+1]["o"] != WALL
+                          for n in 1..5
+                           @adjacentMatrice[@player.y_player][@player.x_player+n]["o"] = ATTACK
+                          end
+                        end
+                    when "l"
+                        if @adjacentMatrice[@player.y_player][@player.x_player-1]["o"] != WALL
+                          for n in 1..5
+                            @adjacentMatrice[@player.y_player][@player.x_player-n]["o"] = ATTACK
+                          end
+                        end
+                    when "u"
+                        if @adjacentMatrice[@player.y_player-1][@player.x_player]["o"] != WALL
+                            for n in 1..5
+                             @adjacentMatrice[@player.y_player-n][@player.x_player]["o"] = ATTACK
+                            end
+                        end
+                    when "d"
+                        if @adjacentMatrice[@player.y_player+1][@player.x_player]["o"] != WALL
+                            for n in 1..5
+                                @adjacentMatrice[@player.y_player+n][@player.x_player]["o"] = ATTACK
+                            end
+                        end
+                end
+            end
+        when Gosu::KB_LEFT_ALT
+            if @lose == false
+                @adjacentMatrice[@player.y_player][@player.x_player]["o"]=WALL
+            end
+        end
+    end
 
     
     def draw
