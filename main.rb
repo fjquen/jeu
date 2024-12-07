@@ -65,8 +65,6 @@ class Main < Gosu::Window
                 
                 if @adjacentMatrice[@test[n].y_ennemy][@test[n].x_ennemy]["o"] == ATTACK
                     @adjacentMatrice[@test[n].y_ennemy][@test[n].x_ennemy]["o"] = VOID
-                    puts n
-
                     @test.delete_at(n)
                 end
             end
