@@ -116,7 +116,6 @@ module Area
                     @test[n].position_ennemy(void,ennemy,player)
                 end
             end
-            puts @test
         end
     end
 

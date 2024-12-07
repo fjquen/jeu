@@ -63,6 +63,7 @@ class Main < Gosu::Window
                     @lose = true
                 end
                 
+               
                 if @adjacentMatrice[@test[n].y_ennemy][@test[n].x_ennemy]["o"] == ATTACK
                     @adjacentMatrice[@test[n].y_ennemy][@test[n].x_ennemy]["o"] = VOID
                     @test.delete_at(n)
@@ -89,7 +90,7 @@ class Main < Gosu::Window
         when Gosu::KB_DOWN
             @direction = "d"
         when Gosu::KB_SPACE
-            if @bool_move
+            if @bool_move 
                 case @direction
                     when "r"
                         if @adjacentMatrice[@player.y_player][@player.x_player+1]["o"] != WALL
