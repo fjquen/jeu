@@ -59,8 +59,15 @@ class Main < Gosu::Window
                 elsif @test[n].y_ennemy-1 == @player.y_player and  @test[n].x_ennemy == @player.x_player and @adjacentMatrice[@player.y_player][@player.x_player]["o"]!=WALL
                     @lose = true
                 end
+
             end
+
+            # if @adjacentMatrice[@test[n].y_ennemy][@test[n].x_ennemy]["o"] == ATTACK
+            #     @adjacentMatrice[@test[n].y_ennemy][@test[n].x_ennemy]["o"] = VOID
+            # end
         end
+
+        
     end
     
     def button_down(id)
